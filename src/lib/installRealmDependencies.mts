@@ -1,4 +1,7 @@
-import type {DependencyMap} from "@fourtune/types/core/v1/"
+import type {
+	Realm,
+	DependencyMap
+} from "@fourtune/types/core/v1/"
 
 import path from "node:path"
 import fs from "node:fs/promises"
@@ -7,7 +10,7 @@ import {calculateDependenciesIntegrity} from "./calculateDependenciesIntegrity.m
 
 export async function installRealmDependencies(
 	core_base_dir: string,
-	realm: string,
+	realm: Realm,
 	dependencies: DependencyMap,
 	hash: string,
 	npm_bin_path?: string|null

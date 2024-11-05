@@ -1,5 +1,6 @@
 import path from "node:path"
 import type {
+	Realm,
 	DependencyMap,
 	DependenciesToInstall,
 	InstallRealmDependenciesOptions
@@ -47,7 +48,7 @@ function getDependenciesHash(
 
 export async function installRealmDependencies(
 	project_root: string,
-	realm: string,
+	realm: Realm,
 	dependencies_to_install: DependenciesToInstall,
 	{
 		npm_bin_path = undefined,

@@ -1,4 +1,8 @@
-import {LoadRealmDependencyResult} from "@fourtune/types/core/v1/"
+import type {
+	Realm,
+	LoadRealmDependencyResult
+} from "@fourtune/types/core/v1/"
+
 import {findProjectRootFromDirectory} from "./lib/findProjectRootFromDirectory.mts"
 import path from "node:path"
 import fs from "node:fs/promises"
@@ -28,16 +32,18 @@ async function verifyIntegrity(core_base_dir: string) {
 }
 
 const realm_cache : {
-	[realm: string]: Map<string, LoadRealmDependencyResult>
+	[R in Realm]: Map<string, LoadRealmDependencyResult>
 } = {
-	"js": new Map()
+	"js": new Map(),
+	"c": new Map(),
+	"web": new Map()
 }
 
 let initial_checks_done = false
 
 export async function loadRealmDependency(
 	project_root: string | "cli",
-	realm: string,
+	realm: Realm,
 	dependency_name: string
 ) : Promise<LoadRealmDependencyResult> {
 	if (!(realm in realm_cache)) {

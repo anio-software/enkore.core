@@ -1,3 +1,4 @@
+import type {Realm} from "@fourtune/types/core/v1/"
 import {installRealmDependencies} from "#~src/installRealmDependencies.mjs"
 import fs from "node:fs/promises"
 
@@ -15,7 +16,7 @@ const tmp = await import(
 )
 
 await installRealmDependencies(
-	project_root, realm, tmp.default
+	project_root, realm as Realm, tmp.default
 )
 
 export default 1
