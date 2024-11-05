@@ -14,6 +14,7 @@ import {cleanBaseFolder} from "./lib/cleanBaseFolder.mts"
 import {defaultImportCode} from "./lib/defaultImportCode.mts"
 import {createHash} from "node:crypto"
 import {fileExists} from "./lib/fileExists.mts"
+import {findProjectRootFromDirectory} from "./lib/findProjectRootFromDirectory.mts"
 import {installRealmDependencies as impl} from "./lib/installRealmDependencies.mts"
 import {getVersion} from "./getVersion.mts"
 
@@ -48,7 +49,7 @@ function getDependenciesHash(
 }
 
 const installRealmDependencies : InstallRealmDependencies = async function(
-	project_root: string,
+	project_root: string | "cli",
 	realm: Realm,
 	dependencies_to_install: DependenciesToInstall,
 	{
@@ -65,6 +66,21 @@ const installRealmDependencies : InstallRealmDependencies = async function(
 	}
 
 	const {dependencies} = dependencies_to_install
+
+	if (project_root === "cli") {
+		const tmp = await findProjectRootFromDirectory(
+			path.dirname(process.argv[1])
+		)
+
+		if (tmp === false) {
+			throw new Error(
+				`Unable to determine the project root.\n` +
+				`Make sure fourtune.config.mjs is in the project root.`
+			)
+		}
+
+		project_root = tmp
+	}
 
 	// make sure project_root is pointing towards a fourtune project
 	project_root = await checkProjectRoot(project_root)
