@@ -78,7 +78,6 @@ export async function installRealmDependencies(
 			hash_on_disk = tmp.default
 		} catch {}
 
-
 		if (hash_on_disk === current_hash) {
 			return
 		}
