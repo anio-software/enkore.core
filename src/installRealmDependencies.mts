@@ -50,6 +50,8 @@ export async function installRealmDependencies(
 		throw new Error(`Incompatible API version.`)
 	}
 
+	const {dependencies} = dependencies_to_install
+
 	// make sure project_root is pointing towards a fourtune project
 	project_root = await checkProjectRoot(project_root)
 
@@ -61,7 +63,7 @@ export async function installRealmDependencies(
 	await cleanBaseFolder(core_base_dir)
 
 	const hash_file = path.join(core_base_dir, "dependencies", "hash.mjs")
-	const current_hash = getDependenciesHash(dependencies_to_install.map)
+	const current_hash = getDependenciesHash(dependencies)
 
 	if ((await fileExists(hash_file))) {
 		let hash_on_disk = "" 
@@ -80,7 +82,7 @@ export async function installRealmDependencies(
 	await impl(
 		core_base_dir,
 		realm,
-		dependencies_to_install.map,
+		dependencies,
 		current_hash,
 		npm_bin_path
 	)
