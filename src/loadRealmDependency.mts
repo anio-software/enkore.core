@@ -26,11 +26,27 @@ async function verifyIntegrity(core_base_dir: string) {
 	}
 }
 
+const realm_cache : {
+	[realm: string]: Map<string, LoadRealmDependencyResult>
+} = {
+	"js": new Map()
+}
+
 export async function loadRealmDependency(
 	project_root: string | "cli",
 	realm: string,
 	dependency_name: string
 ) : Promise<LoadRealmDependencyResult> {
+	if (!(realm in realm_cache)) {
+		throw new Error(`Unknown realm '${realm}'.`)
+	}
+
+	const cache = realm_cache[realm]
+
+	if (cache.has(dependency_name)) {
+		return cache.get(dependency_name) as LoadRealmDependencyResult
+	}
+
 	if (project_root === "cli") {
 		const tmp = await findProjectRootFromDirectory(
 			path.dirname(process.argv[1])
@@ -81,7 +97,7 @@ export async function loadRealmDependency(
 					"node_modules", dependency.name
 				)
 
-				return {
+				const ret = {
 					path: dependency_path,
 					version: dependency.version,
 					dependency: dependency.module,
@@ -91,6 +107,10 @@ export async function loadRealmDependency(
 						)).toString()
 					)
 				}
+
+				cache.set(dependency_name, ret)
+
+				return ret
 			}
 		}
 
