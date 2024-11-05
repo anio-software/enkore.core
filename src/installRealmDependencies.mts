@@ -9,6 +9,7 @@ import {defaultImportCode} from "./lib/defaultImportCode.mts"
 import {createHash} from "node:crypto"
 import {fileExists} from "./lib/fileExists.mts"
 import {installRealmDependencies as impl} from "./lib/installRealmDependencies.mts"
+import {getVersion} from "./getVersion.mts"
 
 function hashString(str: string) {
 	return createHash("sha1").update(str).digest("hex")
@@ -46,7 +47,7 @@ export async function installRealmDependencies(
 	dependencies_to_install: DependenciesToInstall,
 	npm_bin_path?: string|null
 ) {
-	if (dependencies_to_install.api_version !== 1) {
+	if (dependencies_to_install.api_version !== getVersion()) {
 		throw new Error(`Incompatible API version.`)
 	}
 
