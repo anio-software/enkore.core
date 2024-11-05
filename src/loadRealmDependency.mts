@@ -4,6 +4,7 @@ import path from "node:path"
 import fs from "node:fs/promises"
 import {checkProjectRoot} from "./lib/checkProjectRoot.mts"
 import {getBaseDir} from "./lib/getBaseDir.mts"
+import {getVersion} from "./getVersion.mts"
 import {convertPackageName} from "./lib/convertPackageName.mts"
 import {calculateDependenciesIntegrity} from "./lib/calculateDependenciesIntegrity.mts"
 
@@ -103,7 +104,7 @@ export async function loadRealmDependency(
 					"node_modules", dependency.name
 				)
 
-				const ret = {
+				const ret : LoadRealmDependencyResult = {
 					path: dependency_path,
 					version: dependency.version,
 					dependency: dependency.module,
