@@ -16,6 +16,9 @@
       "types": "./dist/default/index.d.mts"
     }
   },
+  "scripts": {
+    "prepare": "./node_modules/.bin/fourtune ."
+  },
   "devDependencies": {
     "@anio-fs/scandir": "^7.1.4",
     "@fourtune/realm-js": "^0.131.0",
