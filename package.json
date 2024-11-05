@@ -20,5 +20,8 @@
     "@fourtune/realm-js": "^0.131.0",
     "@fourtune/types": "^0.60.1",
     "fourtune": "^0.100.0"
-  }
+  },
+  "files": [
+    "./dist"
+  ]
 }
