@@ -32,6 +32,8 @@ const realm_cache : {
 	"js": new Map()
 }
 
+let initial_checks_done = false
+
 export async function loadRealmDependency(
 	project_root: string | "cli",
 	realm: string,
@@ -62,8 +64,12 @@ export async function loadRealmDependency(
 		project_root = tmp
 	}
 
-	await checkProjectRoot(project_root)
-	await verifyIntegrity(path.join(project_root, ".fourtune", getBaseDir()))
+	if (!initial_checks_done) {
+		await checkProjectRoot(project_root)
+		await verifyIntegrity(path.join(project_root, ".fourtune", getBaseDir()))
+
+		initial_checks_done = true
+	}
 
 	try {
 		const tmp = await import(
