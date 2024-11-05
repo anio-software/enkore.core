@@ -1,5 +1,5 @@
 import path from "node:path"
-import type {DependencyMap} from "@fourtune/types/core/v1/"
+import type {DependencyMap, DependenciesToInstall} from "@fourtune/types/core/v1/"
 
 import {getBaseDir} from "./lib/getBaseDir.mts"
 import {checkProjectRoot} from "./lib/checkProjectRoot.mts"
@@ -43,9 +43,13 @@ function getDependenciesHash(
 export async function installRealmDependencies(
 	project_root: string,
 	realm: string,
-	dependencies: DependencyMap,
+	dependencies_to_install: DependenciesToInstall,
 	npm_bin_path?: string|null
 ) {
+	if (dependencies_to_install.api_version !== 1) {
+		throw new Error(`Incompatible API version.`)
+	}
+
 	// make sure project_root is pointing towards a fourtune project
 	project_root = await checkProjectRoot(project_root)
 
@@ -57,7 +61,7 @@ export async function installRealmDependencies(
 	await cleanBaseFolder(core_base_dir)
 
 	const hash_file = path.join(core_base_dir, "dependencies", "hash.mjs")
-	const current_hash = getDependenciesHash(dependencies)
+	const current_hash = getDependenciesHash(dependencies_to_install.map)
 
 	if ((await fileExists(hash_file))) {
 		let hash_on_disk = "" 
@@ -76,7 +80,7 @@ export async function installRealmDependencies(
 	await impl(
 		core_base_dir,
 		realm,
-		dependencies,
+		dependencies_to_install.map,
 		current_hash,
 		npm_bin_path
 	)
