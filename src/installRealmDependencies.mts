@@ -48,7 +48,11 @@ export async function installRealmDependencies(
 	npm_bin_path?: string|null
 ) {
 	if (dependencies_to_install.api_version !== getVersion()) {
-		throw new Error(`Incompatible API version.`)
+		throw new Error(
+			`Incompatible API version: requested version:` +
+			` ${dependencies_to_install.api_version}, supported` +
+			` version: ${getVersion()}.`
+		)
 	}
 
 	const {dependencies} = dependencies_to_install
