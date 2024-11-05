@@ -105,6 +105,7 @@ export async function loadRealmDependency(
 				)
 
 				const ret : LoadRealmDependencyResult = {
+					api_version: getVersion(),
 					path: dependency_path,
 					version: dependency.version,
 					dependency: dependency.module,
