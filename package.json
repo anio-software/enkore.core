@@ -22,7 +22,7 @@
   "devDependencies": {
     "@anio-fs/scandir": "^7.1.4",
     "@fourtune/realm-js": "^0.131.0",
-    "@fourtune/types": "^0.150.0",
+    "@fourtune/types": "^0.200.0",
     "fourtune": "^0.100.0"
   },
   "files": [
