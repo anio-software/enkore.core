@@ -1,0 +1,24 @@
+{
+  "name": "@fourtune/core",
+  "version": "0.0.0",
+  "description": "",
+  "author": "Anio Software <info@anio.software>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fourtune-org/core.git"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/default/index.min.mjs",
+      "require": "./dist/default/index.min.mjs",
+      "types": "./dist/default/index.d.mts"
+    }
+  },
+  "devDependencies": {
+    "@anio-fs/scandir": "^7.1.4",
+    "@fourtune/realm-js": "^0.131.0",
+    "@fourtune/types": "^0.60.1",
+    "fourtune": "^0.100.0"
+  }
+}
