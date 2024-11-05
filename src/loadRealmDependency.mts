@@ -1,6 +1,7 @@
 import type {
 	Realm,
-	LoadRealmDependencyResult
+	LoadRealmDependencyResult,
+	LoadRealmDependency
 } from "@fourtune/types/core/v1/"
 
 import {findProjectRootFromDirectory} from "./lib/findProjectRootFromDirectory.mts"
@@ -41,7 +42,7 @@ const realm_cache : {
 
 let initial_checks_done = false
 
-export async function loadRealmDependency(
+const loadRealmDependency : LoadRealmDependency = async function(
 	project_root: string | "cli",
 	realm: Realm,
 	dependency_name: string
@@ -136,3 +137,5 @@ export async function loadRealmDependency(
 		)
 	}
 }
+
+export {loadRealmDependency}

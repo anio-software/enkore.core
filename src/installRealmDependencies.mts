@@ -3,6 +3,7 @@ import type {
 	Realm,
 	DependencyMap,
 	DependenciesToInstall,
+	InstallRealmDependencies,
 	InstallRealmDependenciesOptions
 } from "@fourtune/types/core/v1/"
 
@@ -46,7 +47,7 @@ function getDependenciesHash(
 	)
 }
 
-export async function installRealmDependencies(
+const installRealmDependencies : InstallRealmDependencies = async function(
 	project_root: string,
 	realm: Realm,
 	dependencies_to_install: DependenciesToInstall,
@@ -99,3 +100,5 @@ export async function installRealmDependencies(
 		npm_bin_path
 	)
 }
+
+export {installRealmDependencies}
