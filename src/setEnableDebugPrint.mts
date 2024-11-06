@@ -9,6 +9,10 @@ const setEnableDebugPrint : SetEnableDebugPrint = function(
 }
 
 const getEnableDebugPrint = function() {
+	if ("FOURTUNE_CORE_DEBUG" in process.env) {
+		return true
+	}
+
 	return debug_print_enabled
 }
 
