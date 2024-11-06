@@ -17,6 +17,7 @@ import {fileExists} from "./lib/fileExists.mts"
 import {findProjectRootFromDirectory} from "./lib/findProjectRootFromDirectory.mts"
 import {installRealmDependencies as impl} from "./lib/installRealmDependencies.mts"
 import {getVersion} from "./getVersion.mts"
+import {debugPrint} from "./lib/debugPrint.mts"
 
 function hashString(str: string) {
 	return createHash("sha1").update(str).digest("hex")
@@ -96,6 +97,8 @@ const installRealmDependencies : InstallRealmDependencies = async function(
 	const current_hash = getDependenciesHash(dependencies)
 
 	if (!force && (await fileExists(hash_file))) {
+		debugPrint(`hash of dependencies to be installed is '${current_hash}'.`)
+
 		let hash_on_disk = "" 
 
 		try {
@@ -103,10 +106,14 @@ const installRealmDependencies : InstallRealmDependencies = async function(
 			hash_on_disk = tmp.default
 		} catch {}
 
+		debugPrint(`hash of dependencies on disk is '${hash_on_disk}'.`)
+
 		if (hash_on_disk === current_hash) {
 			return
 		}
 	}
+
+	debugPrint(`installing dependencies.`)
 
 	await impl(
 		core_base_dir,

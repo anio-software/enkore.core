@@ -7,6 +7,7 @@ import path from "node:path"
 import fs from "node:fs/promises"
 import {installDependency} from "./installDependency.mts"
 import {calculateDependenciesIntegrity} from "./calculateDependenciesIntegrity.mts"
+import {debugPrint} from "./debugPrint.mts"
 
 export async function installRealmDependencies(
 	core_base_dir: string,
@@ -30,6 +31,8 @@ export async function installRealmDependencies(
 	for (const dependency_name in dependencies) {
 		const dependency = dependencies[dependency_name]
 
+		debugPrint(`installing ${dependency_name}@${dependency.version}`)
+
 		file += await installDependency(
 			index, tmp_path, dependency_name, dependency, npm_bin_path
 		)
@@ -52,6 +55,8 @@ export async function installRealmDependencies(
 	const integrity = await calculateDependenciesIntegrity(
 		tmp_path
 	)
+
+	debugPrint(`writing integrity '${integrity}'`)
 
 	await fs.rm(path.join(core_base_dir, "dependencies"), {
 		recursive: true,

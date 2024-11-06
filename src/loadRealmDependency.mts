@@ -12,6 +12,7 @@ import {getBaseDir} from "./lib/getBaseDir.mts"
 import {getVersion} from "./getVersion.mts"
 import {convertPackageName} from "./lib/convertPackageName.mts"
 import {calculateDependenciesIntegrity} from "./lib/calculateDependenciesIntegrity.mts"
+import {debugPrint} from "./lib/debugPrint.mts"
 
 async function verifyIntegrity(core_base_dir: string) {
 	const actual_integrity = await calculateDependenciesIntegrity(
@@ -73,6 +74,8 @@ const loadRealmDependency : LoadRealmDependency = async function(
 	}
 
 	if (!initial_checks_done) {
+		debugPrint(`doing initial checks`)
+
 		await checkProjectRoot(project_root)
 		await verifyIntegrity(path.join(project_root, ".fourtune", getBaseDir()))
 
