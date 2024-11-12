@@ -27,9 +27,13 @@ async function verifyIntegrity(core_base_dir: string) {
 		const h1 = actual_integrity
 		const h2 = expected_integrity
 
-		throw new Error(
-			`Realm dependencies integrity check failed! <${h1} !== ${h2}>.`
-		)
+		const msg = `Realm dependencies integrity check failed! <${h1} !== ${h2}>.`
+
+		if (!("FOURTUNE_CORE_DEBUG" in process.env)) {
+			throw new Error(msg)
+		} else {
+			debugPrint(msg)
+		}
 	}
 }
 
