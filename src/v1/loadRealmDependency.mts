@@ -4,15 +4,15 @@ import type {
 	LoadRealmDependency
 } from "@fourtune/types/core/v1/"
 
-import {findProjectRootFromDirectory} from "./lib/findProjectRootFromDirectory.mts"
+import {findProjectRootFromDirectory} from "#~src/lib/findProjectRootFromDirectory.mts"
 import path from "node:path"
 import fs from "node:fs/promises"
-import {checkProjectRoot} from "./lib/checkProjectRoot.mts"
-import {getBaseDir} from "./lib/getBaseDir.mts"
+import {checkProjectRoot} from "#~src/lib/checkProjectRoot.mts"
+import {getBaseDir} from "#~src/lib/getBaseDir.mts"
 import {getVersion} from "./getVersion.mts"
-import {convertPackageName} from "./lib/convertPackageName.mts"
-import {calculateDependenciesIntegrity} from "./lib/calculateDependenciesIntegrity.mts"
-import {debugPrint} from "./lib/debugPrint.mts"
+import {convertPackageName} from "#~src/lib/convertPackageName.mts"
+import {calculateDependenciesIntegrity} from "#~src/lib/calculateDependenciesIntegrity.mts"
+import {debugPrint} from "#~src/lib/debugPrint.mts"
 
 async function verifyIntegrity(core_base_dir: string) {
 	const actual_integrity = await calculateDependenciesIntegrity(

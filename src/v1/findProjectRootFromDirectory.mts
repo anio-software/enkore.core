@@ -1,4 +1,4 @@
-import {findProjectRootFromDirectory as impl} from "./lib/findProjectRootFromDirectory.mts"
+import {findProjectRootFromDirectory as impl} from "#~src/lib/findProjectRootFromDirectory.mts"
 
 export async function findProjectRootFromDirectory(
 	start_directory: string

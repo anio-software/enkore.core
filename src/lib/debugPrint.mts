@@ -1,4 +1,4 @@
-import {getEnableDebugPrint} from "../setEnableDebugPrint.mts"
+import {getEnableDebugPrint} from "#~src/v1/setEnableDebugPrint.mts"
 
 export function debugPrint(message: string) {
 	if (!getEnableDebugPrint()) return
