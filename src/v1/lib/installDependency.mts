@@ -1,9 +1,9 @@
 //import type {DependencyMap} from "@fourtune/types/core/v1/"
 
-import {defaultImportCode} from "./defaultImportCode.mts"
+import {defaultImportCode} from "#~src/lib/defaultImportCode.mts"
 import path from "node:path"
 import fs from "node:fs/promises"
-import {convertPackageName} from "./convertPackageName.mts"
+import {convertPackageName} from "#~src/lib/convertPackageName.mts"
 import {spawn} from "node:child_process"
 
 function spawnAsync(

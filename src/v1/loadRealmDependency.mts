@@ -8,11 +8,11 @@ import {findProjectRootFromDirectory} from "#~src/lib/findProjectRootFromDirecto
 import path from "node:path"
 import fs from "node:fs/promises"
 import {checkProjectRoot} from "#~src/lib/checkProjectRoot.mts"
-import {getBaseDir} from "#~src/lib/getBaseDir.mts"
+import {getBaseDir} from "./lib/getBaseDir.mts"
 import {getVersion} from "./getVersion.mts"
 import {convertPackageName} from "#~src/lib/convertPackageName.mts"
 import {calculateDependenciesIntegrity} from "#~src/lib/calculateDependenciesIntegrity.mts"
-import {debugPrint} from "#~src/lib/debugPrint.mts"
+import {debugPrint} from "./lib/debugPrint.mts"
 
 async function verifyIntegrity(core_base_dir: string) {
 	const actual_integrity = await calculateDependenciesIntegrity(

@@ -6,7 +6,7 @@ import type {
 import path from "node:path"
 import fs from "node:fs/promises"
 import {installDependency} from "./installDependency.mts"
-import {calculateDependenciesIntegrity} from "./calculateDependenciesIntegrity.mts"
+import {calculateDependenciesIntegrity} from "#~src/lib/calculateDependenciesIntegrity.mts"
 import {debugPrint} from "./debugPrint.mts"
 
 export async function installRealmDependencies(

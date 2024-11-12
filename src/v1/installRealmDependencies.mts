@@ -7,7 +7,7 @@ import type {
 	InstallRealmDependenciesOptions
 } from "@fourtune/types/core/v1/"
 
-import {getBaseDir} from "#~src/lib/getBaseDir.mts"
+import {getBaseDir} from "./lib/getBaseDir.mts"
 import {checkProjectRoot} from "#~src/lib/checkProjectRoot.mts"
 import {ensureDirExists} from "#~src/lib/ensureDirExists.mts"
 import {cleanBaseFolder} from "#~src/lib/cleanBaseFolder.mts"
@@ -15,9 +15,9 @@ import {defaultImportCode} from "#~src/lib/defaultImportCode.mts"
 import {createHash} from "node:crypto"
 import {fileExists} from "#~src/lib/fileExists.mts"
 import {findProjectRootFromDirectory} from "#~src/lib/findProjectRootFromDirectory.mts"
-import {installRealmDependencies as impl} from "#~src/lib/installRealmDependencies.mts"
+import {installRealmDependencies as impl} from "./lib/installRealmDependencies.mts"
 import {getVersion} from "./getVersion.mts"
-import {debugPrint} from "#~src/lib/debugPrint.mts"
+import {debugPrint} from "./lib/debugPrint.mts"
 
 function hashString(str: string) {
 	return createHash("sha1").update(str).digest("hex")
