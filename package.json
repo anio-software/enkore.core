@@ -10,10 +10,10 @@
     "url": "git+https://github.com/fourtune-org/core.git"
   },
   "exports": {
-    ".": {
-      "import": "./dist/default/index.min.mjs",
-      "require": "./dist/default/index.min.mjs",
-      "types": "./dist/default/index.d.mts"
+    "./v1": {
+      "import": "./dist/v1/index.min.mjs",
+      "require": "./dist/v1/index.min.mjs",
+      "types": "./dist/v1/index.d.mts"
     }
   },
   "scripts": {
