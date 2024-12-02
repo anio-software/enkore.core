@@ -1,6 +1,6 @@
-//import type {DependencyMap} from "@fourtune/types/core/v1/"
+import type {DependencyMapEntry} from "@fourtune/types/core/v1"
 
-import {defaultImportCode} from "#~src/lib/defaultImportCode.mts"
+import {generateExportCode} from "./generateExportCode.mts"
 import path from "node:path"
 import fs from "node:fs/promises"
 import {convertPackageName} from "#~src/lib/convertPackageName.mts"
@@ -10,18 +10,9 @@ export async function installDependencyIsolated(
 	index: number,
 	tmp_path: string,
 	dependency_name: string,
-	dependency: {
-		version: string,
-		import_code?: string|null
-	},
+	dependency: DependencyMapEntry,
 	npm_bin_path?: string|null
 ) : Promise<string> {
-	let import_code = defaultImportCode(dependency_name)
-
-	if ("import_code" in dependency && dependency.import_code) {
-		import_code = dependency.import_code
-	}
-
 	const pkg_name = convertPackageName(dependency_name)
 	const pkg_path = path.join(tmp_path, pkg_name)
 
@@ -39,10 +30,17 @@ export async function installDependencyIsolated(
 	}
 
 	await fs.writeFile(
-		path.join(pkg_path, "index.mjs"), import_code
+		path.join(pkg_path, "index.mjs"), generateExportCode(dependency_name, dependency)
 	)
 
-	let ret = `import dependency_${index} from "./${pkg_name}/index.mjs"\n`
+	let ret = ``
+
+	if (dependency.import_kind === "star" ||
+		dependency.import_kind === "named") {
+		ret += `import * as dependency_${index} from "./${pkg_name}/index.mjs"\n`
+	} else {
+		ret += `import dependency_${index} from "./${pkg_name}/index.mjs"\n`
+	}
 
 	ret += `\n`
 	ret += `dependencies.push({\n`
