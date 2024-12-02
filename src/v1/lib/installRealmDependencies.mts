@@ -5,7 +5,7 @@ import type {
 
 import path from "node:path"
 import fs from "node:fs/promises"
-import {installDependency} from "./installDependency.mts"
+import {installDependencyIsolated} from "./installDependencyIsolated.mts"
 import {calculateDependenciesIntegrity} from "#~src/lib/calculateDependenciesIntegrity.mts"
 import {debugPrint} from "./debugPrint.mts"
 
@@ -33,7 +33,7 @@ export async function installRealmDependencies(
 
 		debugPrint(`installing ${dependency_name}@${dependency.version}`)
 
-		file += await installDependency(
+		file += await installDependencyIsolated(
 			index, tmp_path, dependency_name, dependency, npm_bin_path
 		)
 

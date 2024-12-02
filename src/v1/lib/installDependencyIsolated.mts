@@ -27,7 +27,7 @@ function spawnAsync(
 	})
 }
 
-export async function installDependency(
+export async function installDependencyIsolated(
 	index: number,
 	tmp_path: string,
 	dependency_name: string,
