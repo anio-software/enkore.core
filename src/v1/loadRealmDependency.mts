@@ -120,6 +120,12 @@ const loadRealmDependency : LoadRealmDependency = async function(
 				`Installed realm dependencies belong to a different realm.`
 			)
 		}
+		else if (tmp.created_by_core_version !== getVersion()) {
+			throw new Error(
+				`You are trying to load dependencies that were created by a different version of @fourtune/core ` +
+				`your version: ${getVersion()}, used version ${tmp.created_by_core_version}.\n`
+			)
+		}
 
 		const expected_platform = tmp.platform
 		const current_platform = `${process.arch}-${process.platform}`

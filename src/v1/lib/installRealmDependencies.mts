@@ -9,6 +9,7 @@ import {installDependencyIsolated} from "./installDependencyIsolated.mts"
 import {calculateDependenciesIntegrity} from "#~src/lib/calculateDependenciesIntegrity.mts"
 import {debugPrint} from "./debugPrint.mts"
 import {installRegularDependencies} from "./installRegularDependencies.mts"
+import {getVersion} from "../getVersion.mts"
 
 export async function installRealmDependencies(
 	core_base_dir: string,
@@ -25,6 +26,7 @@ export async function installRealmDependencies(
 
 	let file = ``, index = 0
 
+	file += `const created_by_core_version = ${getVersion()}\n`
 	file += `const dependencies = []\n`
 	file += `const realm = ${JSON.stringify(realm)}\n`
 	file += `const platform = ${JSON.stringify(`${process.arch + "-" + process.platform}`)}\n`
@@ -51,7 +53,7 @@ export async function installRealmDependencies(
 		tmp_path, regular_dependencies, npm_bin_path
 	)
 
-	file += `\nexport {dependencies, realm, platform};\n`
+	file += `\nexport {dependencies, realm, platform, created_by_core_version};\n`
 
 	await fs.writeFile(
 		path.join(tmp_path, "dependencies.mjs"),
