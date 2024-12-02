@@ -17,9 +17,7 @@ export async function installRealmDependencies(
 	npm_bin_path?: string|null
 ) {
 	const regular_dependencies : DependencyMap = {}
-
 	const tmp = Math.random().toString(32).slice(2)
-
 	const tmp_path = path.join(core_base_dir, `.tmp_${tmp}`)
 
 	await fs.mkdir(tmp_path)
