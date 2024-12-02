@@ -1,5 +1,5 @@
 import type {Realm} from "@fourtune/types/core/v1/"
-import {installRealmDependencies} from "#~src/v1/installRealmDependencies.mjs"
+import {installRealmDependencies} from "#~src/v1/installRealmDependencies.mts"
 import fs from "node:fs/promises"
 
 const args = process.argv.slice(2)
