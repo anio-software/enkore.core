@@ -16,6 +16,8 @@ export async function installRealmDependencies(
 	hash: string,
 	npm_bin_path?: string|null
 ) {
+	const regular_dependencies : DependencyMap = {}
+
 	const tmp = Math.random().toString(32).slice(2)
 
 	const tmp_path = path.join(core_base_dir, `.tmp_${tmp}`)
@@ -31,7 +33,13 @@ export async function installRealmDependencies(
 	for (const dependency_name in dependencies) {
 		const dependency = dependencies[dependency_name]
 
-		debugPrint(`installing ${dependency_name}@${dependency.version}`)
+		if (!("isolated" in dependency) || dependency.isolated !== true) {
+			regular_dependencies[dependency_name] = dependency
+
+			continue
+		}
+
+		debugPrint(`installing ${dependency_name}@${dependency.version} (isolated)`)
 
 		file += await installDependencyIsolated(
 			index, tmp_path, dependency_name, dependency, npm_bin_path
