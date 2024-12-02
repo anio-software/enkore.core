@@ -19,7 +19,8 @@ export function generateDependencyImportCode(
 	ret += `dependencies.push({\n`
 	ret += `    name: ${JSON.stringify(dependency_name)},\n`
 	ret += `    module: ${identifier},\n`,
-	ret += `    version: ${JSON.stringify(dependency.version)}\n`
+	ret += `    version: ${JSON.stringify(dependency.version)},\n`
+	ret += `    isolated: ${dependency.isolated ? "true" : "false"}\n`
 	ret += `})\n`
 
 	return ret

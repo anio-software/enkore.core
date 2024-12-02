@@ -47,6 +47,29 @@ const realm_cache : {
 
 let initial_checks_done = false
 
+function getDependencyRootPath(
+	project_root: string,
+	isolated: boolean,
+	dependency_name: string
+) : string {
+	if (isolated) {
+		return path.join(
+			project_root, ".fourtune",
+			getBaseDir(), "dependencies",
+			"_isolated",
+			convertPackageName(dependency_name),
+			"node_modules", dependency_name
+		)
+	}
+
+	return path.join(
+		project_root, ".fourtune",
+		getBaseDir(), "dependencies",
+		"regular",
+		"node_modules", dependency_name
+	)
+}
+
 const loadRealmDependency : LoadRealmDependency = async function(
 	project_root: string | "cli",
 	realm: Realm,
@@ -111,12 +134,7 @@ const loadRealmDependency : LoadRealmDependency = async function(
 
 		for (const dependency of tmp.dependencies) {
 			if (dependency.name === dependency_name) {
-				const dependency_path = path.join(
-					project_root, ".fourtune",
-					getBaseDir(), "dependencies",
-					convertPackageName(dependency.name),
-					"node_modules", dependency.name
-				)
+				const dependency_path = getDependencyRootPath(project_root, dependency.isolated, dependency.name)
 
 				const ret : LoadRealmDependencyResult = {
 					api_version: getVersion(),
