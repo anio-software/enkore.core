@@ -63,6 +63,8 @@ export async function installRegularDependencies(
 			dependency_name,
 			dependency
 		)
+
+		++index
 	}
 
 	return ret
