@@ -8,6 +8,7 @@ import fs from "node:fs/promises"
 import {installDependencyIsolated} from "./installDependencyIsolated.mts"
 import {calculateDependenciesIntegrity} from "#~src/lib/calculateDependenciesIntegrity.mts"
 import {debugPrint} from "./debugPrint.mts"
+import {installRegularDependencies} from "./installRegularDependencies.mts"
 
 export async function installRealmDependencies(
 	core_base_dir: string,
@@ -45,6 +46,10 @@ export async function installRealmDependencies(
 
 		++index
 	}
+
+	file += await installRegularDependencies(
+		tmp_path, regular_dependencies, npm_bin_path
+	)
 
 	file += `\nexport {dependencies, realm, platform};\n`
 
