@@ -14,9 +14,11 @@ export async function installDependencyIsolated(
 	npm_bin_path?: string|null
 ) : Promise<string> {
 	const pkg_name = convertPackageName(dependency_name)
-	const pkg_path = path.join(tmp_path, pkg_name)
+	const pkg_path = path.join(tmp_path, "_isolated", pkg_name)
 
-	await fs.mkdir(pkg_path)
+	await fs.mkdir(pkg_path, {
+		recursive: true
+	})
 
 	const child = await spawnAsync(npm_bin_path ?? "npm", [
 		"install",
@@ -37,9 +39,9 @@ export async function installDependencyIsolated(
 
 	if (dependency.import_kind === "star" ||
 		dependency.import_kind === "named") {
-		ret += `import * as dependency_${index} from "./${pkg_name}/index.mjs"\n`
+		ret += `import * as dependency_${index} from "./_isolated/${pkg_name}/index.mjs"\n`
 	} else {
-		ret += `import dependency_${index} from "./${pkg_name}/index.mjs"\n`
+		ret += `import dependency_${index} from "./_isolated/${pkg_name}/index.mjs"\n`
 	}
 
 	ret += `\n`
