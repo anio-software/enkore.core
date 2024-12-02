@@ -5,6 +5,7 @@ import path from "node:path"
 import fs from "node:fs/promises"
 import {convertPackageName} from "#~src/lib/convertPackageName.mts"
 import {spawnAsync} from "./spawnAsync.mts"
+import {generateDependencyImportCode} from "./generateDependencyImportCode.mts"
 
 export async function installDependencyIsolated(
 	index: number,
@@ -35,21 +36,10 @@ export async function installDependencyIsolated(
 		path.join(pkg_path, "index.mjs"), generateExportCode(dependency_name, dependency)
 	)
 
-	let ret = ``
-
-	if (dependency.import_kind === "star" ||
-		dependency.import_kind === "named") {
-		ret += `import * as dependency_${index} from "./_isolated/${pkg_name}/index.mjs"\n`
-	} else {
-		ret += `import dependency_${index} from "./_isolated/${pkg_name}/index.mjs"\n`
-	}
-
-	ret += `\n`
-	ret += `dependencies.push({\n`
-	ret += `    name: ${JSON.stringify(dependency_name)},\n`
-	ret += `    module: dependency_${index},\n`,
-	ret += `    version: ${JSON.stringify(dependency.version)}\n`
-	ret += `})\n`
-
-	return ret
+	return generateDependencyImportCode(
+		`__isolated_dependency_${index}`,
+		`./_isolated/${pkg_name}/index.mjs`,
+		dependency_name,
+		dependency
+	)
 }
