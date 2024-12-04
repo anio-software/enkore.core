@@ -18,6 +18,7 @@ import {findProjectRootFromDirectory} from "#~src/lib/findProjectRootFromDirecto
 import {installRealmDependencies as impl} from "./lib/installRealmDependencies.mts"
 import {getVersion} from "./getVersion.mts"
 import {debugPrint} from "./lib/debugPrint.mts"
+import {getExactVersion} from "./getExactVersion.mts"
 
 function hashString(str: string) {
 	return createHash("sha1").update(str).digest("hex")
@@ -94,7 +95,7 @@ const installRealmDependencies : InstallRealmDependencies = async function(
 	await cleanBaseFolder(core_base_dir)
 
 	const hash_file = path.join(core_base_dir, "dependencies", "hash.mjs")
-	const current_hash = getDependenciesHash(dependencies)
+	const current_hash = getDependenciesHash(dependencies) + `-${getExactVersion()}`
 
 	if (!force && (await fileExists(hash_file))) {
 		debugPrint(`hash of dependencies to be installed is '${current_hash}'.`)
