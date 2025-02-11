@@ -1,4 +1,6 @@
 export default {
-	realm: "js",
-	type: "package"
+	realm: {
+		name: "js",
+		type: "package"
+	}
 }

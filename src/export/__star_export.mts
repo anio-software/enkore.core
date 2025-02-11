@@ -1,0 +1,8 @@
+export const apiID = "EnkoreCoreAPI"
+export const apiMajorVersion = 0
+export const apiRevision = 0
+
+export {findProjectRootFromDirectory} from "#~src/public/findProjectRootFromDirectory.mts"
+export {initializeProject} from "#~src/public/initializeProject.mts"
+export {loadRealmDependency} from "#~src/public/loadRealmDependency.mts"
+export {setDebugMode} from "#~src/public/setDebugMode.mts"
