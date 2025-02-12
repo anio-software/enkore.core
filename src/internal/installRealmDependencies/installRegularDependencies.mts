@@ -4,12 +4,16 @@ import path from "node:path"
 import {spawnAsync} from "../spawnAsync.mts"
 import {generateDependencyExportCode} from "../generateDependencyExportCode.mts"
 import {_debugPrint} from "../_debugPrint.mts"
+import type {InstalledDependency} from "./InstalledDependency.d.mts"
+import {readDependencyPackageJSON} from "./readDependencyPackageJSON.mts"
 
 export async function installRegularDependencies(
 	tmpDirPath: string,
 	dependencies: NormalizedInstallSpec[],
 	npmBinaryPath: string
-) {
+) : Promise<InstalledDependency[]> {
+	const installedDependencies : InstalledDependency[] = []
+
 	const debug = (msg: string) => _debugPrint(`installRegularDependencies: ${msg}.`)
 
 	const packageJSON : {
@@ -62,4 +66,17 @@ export async function installRegularDependencies(
 	if (code !== 0) {
 		throw new Error(`Failed to install regular realm dependencies.`)
 	}
+
+	for (const dependency of dependencies) {
+		const dependencyPackageJSON = await readDependencyPackageJSON(
+			tmpDirPath, dependency
+		)
+
+		installedDependencies.push({
+			name: dependency.dependencyName,
+			version: dependencyPackageJSON.version
+		})
+	}
+
+	return installedDependencies
 }

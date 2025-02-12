@@ -4,12 +4,16 @@ import path from "node:path"
 import {spawnAsync} from "../spawnAsync.mts"
 import {generateDependencyExportCode} from "../generateDependencyExportCode.mts"
 import {_debugPrint} from "../_debugPrint.mts"
+import type {InstalledDependency} from "./InstalledDependency.d.mts"
+import {readDependencyPackageJSON} from "./readDependencyPackageJSON.mts"
 
 export async function installIsolatedDependencies(
 	tmpDirPath: string,
 	dependencies: NormalizedInstallSpec[],
 	npmBinaryPath: string
-) {
+) : Promise<InstalledDependency[]> {
+	const installedDependencies : InstalledDependency[] = []
+
 	const debug = (msg: string) => _debugPrint(`installIsolatedDependencies: ${msg}.`)
 
 	await mkdirp(path.join(tmpDirPath, "isolated"))
@@ -58,5 +62,16 @@ export async function installIsolatedDependencies(
 				`Failed to install isolated realm dependency '${dependency.identifier}'.`
 			)
 		}
+
+		const dependencyPackageJSON = await readDependencyPackageJSON(
+			tmpDirPath, dependency
+		)
+
+		installedDependencies.push({
+			name: dependency.dependencyName,
+			version: dependencyPackageJSON.version
+		})
 	}
+
+	return installedDependencies
 }

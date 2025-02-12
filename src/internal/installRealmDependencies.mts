@@ -14,6 +14,7 @@ import fs from "node:fs/promises"
 import {installIsolatedDependencies} from "./installRealmDependencies/installIsolatedDependencies.mts"
 import {installRegularDependencies} from "./installRealmDependencies/installRegularDependencies.mts"
 import {writeDependenciesImportFile} from "./installRealmDependencies/writeDependenciesImportFile.mts"
+import type {InstalledDependency} from "./installRealmDependencies/InstalledDependency.d.mts"
 
 export async function installRealmDependencies(
 	projectRoot: string,
@@ -35,8 +36,13 @@ export async function installRealmDependencies(
 	const isolatedDependencies = dependencies.filter(dep => dep.isolated)
 	const regularDependencies = dependencies.filter(dep => !dep.isolated)
 
-	await installIsolatedDependencies(tmpDirPath, isolatedDependencies, npmBinaryPath)
-	await installRegularDependencies(tmpDirPath, regularDependencies, npmBinaryPath)
+	const installedDependencies : InstalledDependency[] = [
+		...await installIsolatedDependencies(tmpDirPath, isolatedDependencies, npmBinaryPath),
+		...await installRegularDependencies(tmpDirPath, regularDependencies, npmBinaryPath)
+	]
+
+	installedDependencies; // to be used
+
 	await writeDependenciesImportFile(tmpDirPath, dependencies)
 
 	// ---- //
