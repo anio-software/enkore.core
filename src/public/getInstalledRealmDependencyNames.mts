@@ -4,6 +4,9 @@ import {getProjectRootFromArgument} from "#~src/internal/getProjectRootFromArgum
 import {readProjectConfigFile} from "#~src/internal/readProjectConfigFile.mts"
 import {initializeCore} from "#~src/internal/initializeCore.mts"
 import {verifyRealmDependencyRequest} from "#~src/internal/verifyRealmDependencyRequest.mts"
+import {getCurrentCoreBaseDirPath} from "#~src/internal/paths/getCurrentCoreBaseDirPath.mts"
+import path from "node:path"
+import type {RealmDependenciesExportObjectV0} from "#~src/internal/RealmDependenciesExportObjectV0.d.mts"
 
 const impl : API["getInstalledRealmDependencyNames"] = async function(
 	root,
@@ -17,7 +20,17 @@ const impl : API["getInstalledRealmDependencyNames"] = async function(
 		projectConfig, coreData, realmName
 	)
 
-	return []
+	const {default: dependenciesOnDisk} = await import(
+		path.join(
+			getCurrentCoreBaseDirPath(projectRoot),
+			"dependencies",
+			"index.mjs"
+		)
+	) as {default: RealmDependenciesExportObjectV0}
+
+	return dependenciesOnDisk.realmDependencies.map(dependency => {
+		return dependency.name
+	})
 }
 
 export const getInstalledRealmDependencyNames = impl
