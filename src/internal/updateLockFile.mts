@@ -1,4 +1,4 @@
-import { writeAtomicFileJSON } from "@aniojs/node-fs"
+import {writeAtomicFileJSON} from "@aniojs/node-fs"
 import {getEnkoreLockFilePath} from "./paths/getEnkoreLockFilePath.mts"
 import {readEntityJSONFile} from "@enkore/spec"
 import type {InstalledDependency} from "./installRealmDependencies/InstalledDependency.d.mts"
