@@ -4,7 +4,7 @@ import path from "node:path"
 import {getProjectRootFromArgument} from "#~src/internal/getProjectRootFromArgument.mts"
 import {readProjectConfigFile} from "#~src/internal/readProjectConfigFile.mts"
 import {initializeCore} from "#~src/internal/initializeCore.mts"
-import {getCurrentPlatformString} from "#~src/internal/getCurrentPlatformString.mts"
+import {verifyRealmDependencyRequest} from "#~src/internal/verifyRealmDependencyRequest.mts"
 import type {RealmDependenciesExportObjectV0} from "#~src/internal/RealmDependenciesExportObjectV0.d.mts"
 import {getCurrentCoreBaseDirPath} from "#~src/internal/paths/getCurrentCoreBaseDirPath.mts"
 import {createEntity} from "@enkore/spec"
@@ -18,25 +18,9 @@ const impl : API["loadRealmDependency"] = async function(
 	const projectConfig = await readProjectConfigFile(projectRoot)
 	const coreData = await initializeCore(projectRoot, projectConfig)
 
-	if (projectConfig.realm.name !== realmName) {
-		throw new Error(
-			`Refusing to serve realm dependency of a different realm:\n\n` +
-			`Expected realm: ${realmName}\n` +
-			`Actual realm  : ${projectConfig.realm.name}\n\n` +
-			`Please do a clean install of the realm dependencies.`
-		)
-	}
-
-	const currentPlatform = getCurrentPlatformString()
-
-	if (coreData.platform !== currentPlatform) {
-		throw new Error(
-			`Refusing to serve realm dependencies that were installed by a different platform:\n\n` +
-			`Expected platform: ${coreData.platform}\n` +
-			`Actual platform  : ${currentPlatform}\n\n` +
-			`Please do a clean install of the realm dependencies.`
-		)
-	}
+	await verifyRealmDependencyRequest(
+		projectConfig, coreData, realmName
+	)
 
 	const {default: dependenciesOnDisk} = await import(
 		path.join(
