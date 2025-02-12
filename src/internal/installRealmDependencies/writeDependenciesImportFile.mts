@@ -1,8 +1,7 @@
-import type {NodePackageJSON} from "@enkore/primitives"
 import type {NormalizedInstallSpec} from "../normalizeDependencyInstallSpec.mts"
 import {writeAtomicFile} from "@aniojs/node-fs"
-import {readFileJSON} from "@aniojs/node-fs-file" // to be removed
 import {getDependencyDirPath} from "../paths/getDependencyDirPath.mts"
+import {readDependencyPackageJSON} from "./readDependencyPackageJSON.mts"
 import path from "node:path"
 
 async function declareDependency(
@@ -12,15 +11,9 @@ async function declareDependency(
 ) : Promise<string> {
 	const dependencyDirPath = getDependencyDirPath(dependency)
 
-	const dependencyPackageJSONPath = path.join(
-		tmpDirPath,
-		dependencyDirPath,
-		"package.json"
+	const dependencyPackageJSON = await readDependencyPackageJSON(
+		tmpDirPath, dependency
 	)
-
-	const dependencyPackageJSON = await readFileJSON(
-		dependencyPackageJSONPath
-	) as NodePackageJSON
 
 	let ret = `exportObject.realmDependencies.push({\n`
 
