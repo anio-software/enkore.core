@@ -20,7 +20,7 @@
     "@aniojs/node-fs-file": "^0.2.0",
     "@aniojs/random-ident": "^0.1.2",
     "@enkore/primitives": "^0.0.1",
-    "@enkore/spec": "^0.6.0",
+    "@enkore/spec": "^0.7.0",
     "@fourtune/core": "^0.1101.0",
     "@fourtune/realm-js": "^0.31010.0",
     "fourtune": "^0.30000.1"
