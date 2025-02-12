@@ -18,9 +18,7 @@ const impl : API["loadRealmDependency"] = async function(
 	const projectConfig = await readProjectConfigFile(projectRoot)
 	const coreData = await initializeCore(projectRoot, projectConfig)
 
-	await verifyRealmDependencyRequest(
-		projectConfig, coreData, realmName
-	)
+	await verifyRealmDependencyRequest(projectConfig, coreData, realmName)
 
 	const {default: dependenciesOnDisk} = await import(
 		path.join(
