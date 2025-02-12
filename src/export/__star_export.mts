@@ -6,3 +6,4 @@ export {findProjectRootFromDirectory} from "#~src/public/findProjectRootFromDire
 export {initializeProject} from "#~src/public/initializeProject.mts"
 export {loadRealmDependency} from "#~src/public/loadRealmDependency.mts"
 export {setDebugMode} from "#~src/public/setDebugMode.mts"
+export {getInstalledRealmDependencyNames} from "#~src/public/getInstalledRealmDependencyNames.mts"
