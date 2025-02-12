@@ -69,6 +69,7 @@ export async function installIsolatedDependencies(
 
 		installedDependencies.push({
 			name: dependency.dependencyName,
+			requestedVersion: dependency.version,
 			version: dependencyPackageJSON.version
 		})
 	}
