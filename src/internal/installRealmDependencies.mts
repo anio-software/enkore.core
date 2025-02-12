@@ -61,6 +61,9 @@ export async function installRealmDependencies(
 	)
 
 	await updateLockFile(
-		projectRoot, installedDependencies, dependenciesStamp
+		projectRoot,
+		projectConfig,
+		installedDependencies,
+		dependenciesStamp
 	)
 }
