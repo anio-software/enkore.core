@@ -41,8 +41,6 @@ export async function installRealmDependencies(
 		...await installRegularDependencies(tmpDirPath, regularDependencies, npmBinaryPath)
 	]
 
-	installedDependencies; // to be used
-
 	await writeDependenciesImportFile(tmpDirPath, dependencies)
 
 	// ---- //
@@ -63,6 +61,6 @@ export async function installRealmDependencies(
 	)
 
 	await updateLockFile(
-		projectRoot, dependencies, dependenciesStamp
+		projectRoot, installedDependencies, dependenciesStamp
 	)
 }

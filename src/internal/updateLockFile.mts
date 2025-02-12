@@ -1,11 +1,11 @@
 import { writeAtomicFileJSON } from "@aniojs/node-fs"
-import type {NormalizedInstallSpec} from "./normalizeDependencyInstallSpec.mts"
 import {getEnkoreLockFilePath} from "./paths/getEnkoreLockFilePath.mts"
 import {readEntityJSONFile} from "@enkore/spec"
+import type {InstalledDependency} from "./installRealmDependencies/InstalledDependency.d.mts"
 
 export async function updateLockFile(
 	projectRoot: string,
-	dependencies: NormalizedInstallSpec[],
+	installedDependencies: InstalledDependency[],
 	realmDependenciesStamp: string
 ) {
 	const lockFilePath = getEnkoreLockFilePath(projectRoot)
@@ -20,8 +20,8 @@ export async function updateLockFile(
 		[name: string]: {version: string}
 	} = {}
 
-	for (const dependency of dependencies) {
-		realmDependencies[dependency.dependencyName] = {
+	for (const dependency of installedDependencies) {
+		realmDependencies[dependency.name] = {
 			version: dependency.version
 		}
 	}
