@@ -7,6 +7,7 @@ export async function verifyRealmDependencyRequest(
 	coreData: EnkoreCoreData,
 	realmName: RealmName
 ) {
+	// todo: cross check with coreData.realm
 	if (projectConfig.realm.name !== realmName) {
 		throw new Error(
 			`Refusing to serve realm dependency of a different realm:\n\n` +
