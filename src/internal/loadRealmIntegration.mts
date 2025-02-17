@@ -4,13 +4,13 @@ import {
 	importAPI
 } from "@enkore/spec"
 
-import {resolvePackageFromProjectRoot} from "./resolvePackageFromProjectRoot.mts"
+import {resolveImportSpecifierFromProjectRoot} from "@enkore/common"
 
 export async function loadRealmIntegration(
 	projectRoot: string,
 	projectConfig: EnkoreConfig
 ) : Promise<EnkoreRealmIntegrationAPI> {
-	const importPath = await resolvePackageFromProjectRoot(
+	const importPath = await resolveImportSpecifierFromProjectRoot(
 		projectRoot,
 		`@enkore/realm-${projectConfig.realm.name}/realmIntegrationAPI`
 	)

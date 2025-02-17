@@ -1,13 +1,13 @@
 import path from "node:path"
 import {isFileSync} from "@aniojs/node-fs"
 import {readEnkoreConfigFile} from "@enkore/common"
-import {resolvePackageFromProjectRoot} from "./resolvePackageFromProjectRoot.mts"
+import {resolveImportSpecifierFromProjectRoot} from "@enkore/common"
 
 async function checkIfEnkorePackageIsInstalled(
 	projectRoot: string,
 	packageName: string
 ) : Promise<boolean> {
-	return await resolvePackageFromProjectRoot(
+	return await resolveImportSpecifierFromProjectRoot(
 		projectRoot,
 		`${packageName}/package.json`
 	) !== false
