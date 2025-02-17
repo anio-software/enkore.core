@@ -1,7 +1,7 @@
 import type {API} from "#~src/API.d.mts"
 
 import {getProjectRootFromArgument} from "#~src/internal/getProjectRootFromArgument.mts"
-import {readProjectConfigFile} from "#~src/internal/readProjectConfigFile.mts"
+import {readEnkoreConfigFile} from "@enkore/common"
 import {initializeCore} from "#~src/internal/initializeCore.mts"
 import {verifyRealmDependencyRequest} from "#~src/internal/verifyRealmDependencyRequest.mts"
 import {getCurrentCoreBaseDirPath} from "#~src/internal/paths/getCurrentCoreBaseDirPath.mts"
@@ -13,7 +13,7 @@ const impl : API["getInstalledRealmDependencyNames"] = async function(
 	realmName
 ) {
 	const projectRoot = await getProjectRootFromArgument(root)
-	const projectConfig = await readProjectConfigFile(projectRoot)
+	const projectConfig = await readEnkoreConfigFile(projectRoot)
 	const coreData = await initializeCore(projectRoot, projectConfig)
 
 	await verifyRealmDependencyRequest(projectConfig, coreData, realmName)

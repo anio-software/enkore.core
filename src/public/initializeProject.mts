@@ -2,7 +2,7 @@ import type {API} from "#~src/API.d.mts"
 
 import {_debugPrint} from "#~src/internal/_debugPrint.mts"
 import {getProjectRootFromArgument} from "#~src/internal/getProjectRootFromArgument.mts"
-import {readProjectConfigFile} from "#~src/internal/readProjectConfigFile.mts"
+import {readEnkoreConfigFile} from "@enkore/common"
 import {initializeCore} from "#~src/internal/initializeCore.mts"
 import {loadRealmIntegration} from "#~src/internal/loadRealmIntegration.mts"
 import {dependencyInstallSpecMapToStamp} from "#~src/internal/dependencyInstallSpecMapToStamp.mts"
@@ -25,7 +25,7 @@ const impl : API["initializeProject"] = async function(
 	debug(`isCIEnvironment parameter is ` + (isCIEnvironment ? `set` : `not set`))
 
 	const projectRoot = await getProjectRootFromArgument(root)
-	const projectConfig = await readProjectConfigFile(projectRoot)
+	const projectConfig = await readEnkoreConfigFile(projectRoot)
 	const coreData = await initializeCore(projectRoot, projectConfig)
 
 	const realmIntegration = await loadRealmIntegration(projectRoot, projectConfig)

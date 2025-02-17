@@ -2,7 +2,7 @@ import type {API} from "#~src/API.d.mts"
 
 import path from "node:path"
 import {getProjectRootFromArgument} from "#~src/internal/getProjectRootFromArgument.mts"
-import {readProjectConfigFile} from "#~src/internal/readProjectConfigFile.mts"
+import {readEnkoreConfigFile} from "@enkore/common"
 import {initializeCore} from "#~src/internal/initializeCore.mts"
 import {verifyRealmDependencyRequest} from "#~src/internal/verifyRealmDependencyRequest.mts"
 import type {RealmDependenciesExportObjectV0} from "#~src/internal/RealmDependenciesExportObjectV0.d.mts"
@@ -15,7 +15,7 @@ const impl : API["loadRealmDependency"] = async function(
 	dependencyName
 ) {
 	const projectRoot = await getProjectRootFromArgument(root)
-	const projectConfig = await readProjectConfigFile(projectRoot)
+	const projectConfig = await readEnkoreConfigFile(projectRoot)
 	const coreData = await initializeCore(projectRoot, projectConfig)
 
 	await verifyRealmDependencyRequest(projectConfig, coreData, realmName)
