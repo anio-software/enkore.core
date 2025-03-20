@@ -3,6 +3,8 @@ export const apiMajorVersion = 0
 export const apiRevision = 0
 
 export {findProjectRootFromDirectory} from "#~src/public/findProjectRootFromDirectory.mts"
+export {createTemporaryFile} from "#~src/public/createTemporaryFile.mts"
+export {createTemporaryDirectory} from "#~src/public/createTemporaryDirectory.mts"
 export {initializeProject} from "#~src/public/initializeProject.mts"
 export {loadRealmDependency} from "#~src/public/loadRealmDependency.mts"
 export {setDebugMode} from "#~src/public/setDebugMode.mts"
