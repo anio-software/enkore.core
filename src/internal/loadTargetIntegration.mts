@@ -6,7 +6,7 @@ import {
 
 import {resolveImportSpecifierFromProjectRoot} from "@enkore/common"
 
-export async function loadRealmIntegration(
+export async function loadTargetIntegration(
 	projectRoot: string,
 	projectConfig: EnkoreConfig
 ) : Promise<EnkoreTargetIntegrationAPI> {

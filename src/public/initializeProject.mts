@@ -4,7 +4,7 @@ import {_debugPrint} from "#~src/internal/_debugPrint.mts"
 import {getProjectRootFromArgument} from "#~src/internal/getProjectRootFromArgument.mts"
 import {readEnkoreConfigFile} from "@enkore/common"
 import {initializeCore} from "#~src/internal/initializeCore.mts"
-import {loadRealmIntegration} from "#~src/internal/loadRealmIntegration.mts"
+import {loadTargetIntegration} from "#~src/internal/loadTargetIntegration.mts"
 import {dependencyInstallSpecMapToStamp} from "#~src/internal/dependencyInstallSpecMapToStamp.mts"
 import {dependencyInstallSpecMapToArray} from "#~src/internal/dependencyInstallSpecMapToArray.mts"
 import {getEnkoreLockFilePath} from "#~src/internal/paths/getEnkoreLockFilePath.mts"
@@ -28,7 +28,7 @@ const impl : API["initializeProject"] = async function(
 	const projectConfig = await readEnkoreConfigFile(projectRoot)
 	const coreData = await initializeCore(projectRoot, projectConfig)
 
-	const targetIntegration = await loadRealmIntegration(projectRoot, projectConfig)
+	const targetIntegration = await loadTargetIntegration(projectRoot, projectConfig)
 	const targetDependenciesToInstall = await targetIntegration.getRealmDependenciesToInstall()
 	const targetDependenciesToInstallStamp = dependencyInstallSpecMapToStamp(targetDependenciesToInstall)
 
