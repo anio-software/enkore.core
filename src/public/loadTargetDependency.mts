@@ -37,7 +37,7 @@ const impl : API["loadTargetDependency"] = async function(
 			}
 
 			return createEntity(
-				"EnkoreCoreRealmDependency", 0, 0, {
+				"EnkoreCoreTargetDependency", 0, 0, {
 					version: dependency.actualVersion,
 					path: path.join(
 						getCurrentCoreBaseDirPath(projectRoot),
