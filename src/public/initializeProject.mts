@@ -1,4 +1,5 @@
 import type {API} from "#~src/API.d.mts"
+import type {EnkoreLockFile} from "@enkore/spec"
 
 import {_debugPrint} from "#~src/internal/_debugPrint.mts"
 import {getProjectRootFromArgument} from "#~src/internal/getProjectRootFromArgument.mts"
@@ -17,6 +18,7 @@ const impl : API["initializeProject"] = async function(
 	isCIEnvironment,
 	options?
 ) {
+	let initialLockFile: EnkoreLockFile|null = null
 	const debug = (msg: string) => _debugPrint(`initializeProject: ${msg}.`)
 
 	const force = options?.force === true
@@ -35,7 +37,7 @@ const impl : API["initializeProject"] = async function(
 	if (!isCIEnvironment) {
 		_debugPrint(`making sure enkore-lock.json exists`)
 
-		await readEnkoreLockFileOrCreateIt(
+		initialLockFile = await readEnkoreLockFileOrCreateIt(
 			projectRoot,
 			projectConfig.target._targetIdentifier
 		)
@@ -86,6 +88,8 @@ const impl : API["initializeProject"] = async function(
 					`Stamp saved in lockfile : ${lockfileData.targetDependenciesStamp}\n`
 				)
 			}
+
+			initialLockFile = lockfileData
 		} catch (error) {
 			let errorReason = error instanceof Error ? error.message : "unknown"
 
@@ -108,6 +112,10 @@ const impl : API["initializeProject"] = async function(
 		targetDependenciesToInstallStamp,
 		npmBinaryPath
 	)
+
+	if (initialLockFile === null) {
+		throw new Error(`initialLockFile is null, should never get here!`)
+	}
 
 	return targetIntegration
 }
