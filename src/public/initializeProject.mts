@@ -32,15 +32,15 @@ const impl : API["initializeProject"] = async function(
 	const targetDependenciesToInstall = await targetIntegration.getRealmDependenciesToInstall()
 	const targetDependenciesToInstallStamp = dependencyInstallSpecMapToStamp(targetDependenciesToInstall)
 
-	debug(`realm dependencies to install stamp = '${targetDependenciesToInstallStamp}'`)
-	debug(`installed realm dependencies stamp = '${coreData.targetDependenciesStamp}'`)
+	debug(`target dependencies to install stamp = '${targetDependenciesToInstallStamp}'`)
+	debug(`installed target dependencies stamp = '${coreData.targetDependenciesStamp}'`)
 
 	//
 	// check early exit condition:
 	//
 	// - NOT in a CI environment
 	// - force NOT set
-	// - realm dependencies stamps match up
+	// - target dependencies stamps match up
 	//
 	if (!isCIEnvironment && !force && targetDependenciesToInstallStamp === coreData.targetDependenciesStamp) {
 		debug(`stamps match up, doing early return`)
@@ -57,7 +57,7 @@ const impl : API["initializeProject"] = async function(
 	if (isCIEnvironment) {
 		//
 		// in a CI environment we want to make sure
-		// that the realm dependencies stamp matches the one
+		// that the target dependencies stamp matches the one
 		// saved in the enkore lockfile
 		// if not, we throw an error and abort initializing the project
 		//
@@ -68,7 +68,7 @@ const impl : API["initializeProject"] = async function(
 
 			if (lockfileData.targetDependenciesStamp !== targetDependenciesToInstallStamp) {
 				throw new Error(
-					`Realm dependencies stamp inside enkore-lock.json does not match realm dependencies to be installed.\n\n` +
+					`Target dependencies stamp inside enkore-lock.json does not match target dependencies to be installed.\n\n` +
 					`Expected stamp          : ${targetDependenciesToInstallStamp}\n` +
 					`Stamp saved in lockfile : ${lockfileData.targetDependenciesStamp}\n`
 				)
@@ -85,7 +85,7 @@ const impl : API["initializeProject"] = async function(
 		}
 	}
 
-	debug(`installing realm dependencies`)
+	debug(`installing target dependencies`)
 
 	await installTargetDependencies(
 		projectRoot,
