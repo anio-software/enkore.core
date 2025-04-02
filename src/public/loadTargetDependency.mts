@@ -9,7 +9,7 @@ import type {RealmDependenciesExportObjectV0} from "#~src/internal/RealmDependen
 import {getCurrentCoreBaseDirPath} from "#~src/internal/paths/getCurrentCoreBaseDirPath.mts"
 import {createEntity} from "@enkore/spec"
 
-const impl : API["loadRealmDependency"] = async function(
+const impl : API["loadTargetDependency"] = async function(
 	root,
 	realmName,
 	dependencyName
@@ -56,4 +56,4 @@ const impl : API["loadRealmDependency"] = async function(
 	)
 }
 
-export const loadRealmDependency = impl
+export const loadTargetDependency = impl

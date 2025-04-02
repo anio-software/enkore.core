@@ -8,7 +8,7 @@ import {getCurrentCoreBaseDirPath} from "#~src/internal/paths/getCurrentCoreBase
 import path from "node:path"
 import type {RealmDependenciesExportObjectV0} from "#~src/internal/RealmDependenciesExportObjectV0.d.mts"
 
-const impl : API["getInstalledRealmDependencyNames"] = async function(
+const impl : API["getInstalledTargetDependencyNames"] = async function(
 	root,
 	realmName
 ) {
@@ -31,4 +31,4 @@ const impl : API["getInstalledRealmDependencyNames"] = async function(
 	})
 }
 
-export const getInstalledRealmDependencyNames = impl
+export const getInstalledTargetDependencyNames = impl
