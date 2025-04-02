@@ -28,12 +28,12 @@ const impl : API["initializeProject"] = async function(
 	const projectConfig = await readEnkoreConfigFile(projectRoot)
 	const coreData = await initializeCore(projectRoot, projectConfig)
 
-	const realmIntegration = await loadRealmIntegration(projectRoot, projectConfig)
-	const realmDependenciesToInstall = await realmIntegration.getRealmDependenciesToInstall()
-	const realmDependenciesToInstallStamp = dependencyInstallSpecMapToStamp(realmDependenciesToInstall)
+	const targetIntegration = await loadRealmIntegration(projectRoot, projectConfig)
+	const targetDependenciesToInstall = await targetIntegration.getRealmDependenciesToInstall()
+	const targetDependenciesToInstallStamp = dependencyInstallSpecMapToStamp(targetDependenciesToInstall)
 
-	debug(`realm dependencies to install stamp = '${realmDependenciesToInstallStamp}'`)
-	debug(`installed realm dependencies stamp = '${coreData.realmDependenciesStamp}'`)
+	debug(`realm dependencies to install stamp = '${targetDependenciesToInstallStamp}'`)
+	debug(`installed realm dependencies stamp = '${coreData.targetDependenciesStamp}'`)
 
 	//
 	// check early exit condition:
@@ -42,10 +42,10 @@ const impl : API["initializeProject"] = async function(
 	// - force NOT set
 	// - realm dependencies stamps match up
 	//
-	if (!isCIEnvironment && !force && realmDependenciesToInstallStamp === coreData.realmDependenciesStamp) {
+	if (!isCIEnvironment && !force && targetDependenciesToInstallStamp === coreData.targetDependenciesStamp) {
 		debug(`stamps match up, doing early return`)
 
-		return realmIntegration
+		return targetIntegration
 	}
 
 	//
@@ -66,11 +66,11 @@ const impl : API["initializeProject"] = async function(
 				getEnkoreLockFilePath(projectRoot), "EnkoreLockFile"
 			)
 
-			if (lockfileData.realmDependenciesStamp !== realmDependenciesToInstallStamp) {
+			if (lockfileData.targetDependenciesStamp !== targetDependenciesToInstallStamp) {
 				throw new Error(
 					`Realm dependencies stamp inside enkore-lock.json does not match realm dependencies to be installed.\n\n` +
-					`Expected stamp          : ${realmDependenciesToInstallStamp}\n` +
-					`Stamp saved in lockfile : ${lockfileData.realmDependenciesStamp}\n`
+					`Expected stamp          : ${targetDependenciesToInstallStamp}\n` +
+					`Stamp saved in lockfile : ${lockfileData.targetDependenciesStamp}\n`
 				)
 			}
 		} catch (error) {
@@ -91,12 +91,12 @@ const impl : API["initializeProject"] = async function(
 		projectRoot,
 		projectConfig,
 		coreData,
-		dependencyInstallSpecMapToArray(realmDependenciesToInstall),
-		realmDependenciesToInstallStamp,
+		dependencyInstallSpecMapToArray(targetDependenciesToInstall),
+		targetDependenciesToInstallStamp,
 		npmBinaryPath
 	)
 
-	return realmIntegration
+	return targetIntegration
 }
 
 export const initializeProject = impl

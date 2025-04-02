@@ -43,8 +43,8 @@ export async function initializeCore(
 		coreDataFilePath, "EnkoreCoreData", 0, 0, {
 			platform: getCurrentPlatformString(),
 			targetIdentifier: projectConfig.target._targetIdentifier,
-			realmDependenciesIntegrityHash: "",
-			realmDependenciesStamp: ""
+			targetDependenciesIntegrityHash: "",
+			targetDependenciesStamp: ""
 		}
 	)
 

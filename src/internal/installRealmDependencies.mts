@@ -52,7 +52,7 @@ export async function installRealmDependencies(
 	await fs.rename(tmpDirPath, destinationDirPath)
 
 	// ---- //
-	coreData.realmDependenciesStamp = dependenciesStamp
+	coreData.targetDependenciesStamp = dependenciesStamp
 
 	await writeAtomicFileJSON(
 		getCoreDataFilePath(projectRoot),
