@@ -9,7 +9,7 @@ import {dependencyInstallSpecMapToStamp} from "#~src/internal/dependencyInstallS
 import {dependencyInstallSpecMapToArray} from "#~src/internal/dependencyInstallSpecMapToArray.mts"
 import {getEnkoreLockFilePath} from "#~src/internal/paths/getEnkoreLockFilePath.mts"
 import {readEntityJSONFile} from "@enkore/spec"
-import {installRealmDependencies} from "#~src/internal/installRealmDependencies.mts"
+import {installTargetDependencies} from "#~src/internal/installTargetDependencies.mts"
 
 const impl : API["initializeProject"] = async function(
 	root,
@@ -87,7 +87,7 @@ const impl : API["initializeProject"] = async function(
 
 	debug(`installing realm dependencies`)
 
-	await installRealmDependencies(
+	await installTargetDependencies(
 		projectRoot,
 		projectConfig,
 		coreData,

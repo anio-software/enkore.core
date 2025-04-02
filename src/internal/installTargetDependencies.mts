@@ -16,7 +16,7 @@ import {installRegularDependencies} from "./installTargetDependencies/installReg
 import {writeDependenciesImportFile} from "./installTargetDependencies/writeDependenciesImportFile.mts"
 import type {InstalledDependency} from "./installTargetDependencies/InstalledDependency.d.mts"
 
-export async function installRealmDependencies(
+export async function installTargetDependencies(
 	projectRoot: string,
 	projectConfig: EnkoreConfig,
 	coreData: EnkoreCoreData,
