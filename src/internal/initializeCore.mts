@@ -42,7 +42,7 @@ export async function initializeCore(
 	const currentCoreData =  await readEntityJSONFile(
 		coreDataFilePath, "EnkoreCoreData", 0, 0, {
 			platform: getCurrentPlatformString(),
-			realm: projectConfig.realm.name,
+			targetIdentifier: projectConfig.target._targetIdentifier,
 			realmDependenciesIntegrityHash: "",
 			realmDependenciesStamp: ""
 		}

@@ -1,5 +1,5 @@
 import {
-	type EnkoreRealmIntegrationAPI,
+	type EnkoreTargetIntegrationAPI,
 	type EnkoreConfig,
 	importAPI
 } from "@enkore/spec"
@@ -9,10 +9,10 @@ import {resolveImportSpecifierFromProjectRoot} from "@enkore/common"
 export async function loadRealmIntegration(
 	projectRoot: string,
 	projectConfig: EnkoreConfig
-) : Promise<EnkoreRealmIntegrationAPI> {
+) : Promise<EnkoreTargetIntegrationAPI> {
 	const importPath = await resolveImportSpecifierFromProjectRoot(
 		projectRoot,
-		`@enkore/realm-${projectConfig.realm.name}/realmIntegrationAPI`
+		`@enkore-target/${projectConfig.target._targetIdentifier}/realmIntegrationAPI`
 	)
 
 	if (importPath === false) {
@@ -23,6 +23,6 @@ export async function loadRealmIntegration(
 	}
 
 	return await importAPI(
-		importPath, "EnkoreRealmIntegrationAPI"
+		importPath, "EnkoreTargetIntegrationAPI"
 	)
 }

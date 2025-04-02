@@ -1,18 +1,18 @@
 import type {EnkoreConfig, EnkoreCoreData} from "@enkore/spec"
-import type {RealmName} from "@enkore/primitives"
+import type {TargetIdentifier} from "@enkore/primitives"
 import {getCurrentPlatformString} from "./getCurrentPlatformString.mts"
 
 export async function verifyRealmDependencyRequest(
 	projectConfig: EnkoreConfig,
 	coreData: EnkoreCoreData,
-	realmName: RealmName
+	targetIdentifier: TargetIdentifier
 ) {
 	// todo: cross check with coreData.realm
-	if (projectConfig.realm.name !== realmName) {
+	if (projectConfig.target._targetIdentifier !== targetIdentifier) {
 		throw new Error(
-			`Refusing to serve realm dependency of a different realm:\n\n` +
-			`Expected realm: ${realmName}\n` +
-			`Actual realm  : ${projectConfig.realm.name}\n\n` +
+			`Refusing to serve target dependency of a different realm:\n\n` +
+			`Expected target: ${targetIdentifier}\n` +
+			`Actual target  : ${projectConfig.target._targetIdentifier}\n\n` +
 			`Please do a clean install of the realm dependencies.`
 		)
 	}

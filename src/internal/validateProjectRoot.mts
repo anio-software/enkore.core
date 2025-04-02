@@ -34,7 +34,7 @@ export async function validateProjectRoot(
 	}
 
 	// check for enkore realm package
-	const realmPackageName = `@enkore/realm-${projectConfig.realm.name}`
+	const realmPackageName = `@enkore-target/${projectConfig.target._targetIdentifier}`
 
 	if (await checkIfEnkorePackageIsInstalled(projectRoot, `${realmPackageName}`) === false) {
 		throw new Error(
