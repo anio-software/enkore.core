@@ -1,4 +1,4 @@
-import type {EnkoreCoreRealmDependencyInstallSpecification} from "@enkore/spec"
+import type {EnkoreCoreTargetDependencyInstallSpecification} from "@enkore/spec"
 import type {NormalizedInstallSpec} from "./normalizeDependencyInstallSpec.mts"
 import {dependencyInstallSpecMapToArray} from "./dependencyInstallSpecMapToArray.mts"
 import {createHash} from "node:crypto"
@@ -51,7 +51,7 @@ function dependencyInstallSpecToString(
 
 export function dependencyInstallSpecMapToStamp(
 	dependencyInstallSpecMap: {
-		[dependencyName: string]: EnkoreCoreRealmDependencyInstallSpecification
+		[dependencyName: string]: EnkoreCoreTargetDependencyInstallSpecification
 	}
 ) : string {
 	const asArray = dependencyInstallSpecMapToArray(dependencyInstallSpecMap)

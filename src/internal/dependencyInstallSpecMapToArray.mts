@@ -1,4 +1,4 @@
-import type {EnkoreCoreRealmDependencyInstallSpecification} from "@enkore/spec"
+import type {EnkoreCoreTargetDependencyInstallSpecification} from "@enkore/spec"
 
 import {
 	type NormalizedInstallSpec,
@@ -7,7 +7,7 @@ import {
 
 export function dependencyInstallSpecMapToArray(
 	dependencyInstallSpecMap: {
-		[dependencyName: string]: EnkoreCoreRealmDependencyInstallSpecification
+		[dependencyName: string]: EnkoreCoreTargetDependencyInstallSpecification
 	}
 ) : NormalizedInstallSpec[] {
 	let ret : NormalizedInstallSpec[] = []

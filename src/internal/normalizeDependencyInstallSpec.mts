@@ -1,5 +1,5 @@
 import type {
-	EnkoreCoreRealmDependencyInstallSpecification
+	EnkoreCoreTargetDependencyInstallSpecification
 } from "@enkore/spec"
 import {convertDependencyNameToFileName} from "./convertDependencyNameToFileName.mts"
 
@@ -17,7 +17,7 @@ export type NormalizedInstallSpec = {
 
 export function normalizeDependencyInstallSpec(
 	dependencyName: string,
-	spec: EnkoreCoreRealmDependencyInstallSpecification
+	spec: EnkoreCoreTargetDependencyInstallSpecification
 ) : NormalizedInstallSpec {
 	let importKind : "default" | "named" | "star" = "default"
 	const isolated = spec.isolated === true
