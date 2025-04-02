@@ -12,12 +12,12 @@ export async function loadTargetIntegration(
 ) : Promise<EnkoreTargetIntegrationAPI> {
 	const importPath = await resolveImportSpecifierFromProjectRoot(
 		projectRoot,
-		`@enkore-target/${projectConfig.target._targetIdentifier}/realmIntegrationAPI`
+		`@enkore-target/${projectConfig.target._targetIdentifier}/targetIntegrationAPI`
 	)
 
 	if (importPath === false) {
 		throw new Error(
-			`Unable to locate realm integration.\n` +
+			`Unable to locate target integration.\n` +
 			`This should not happen and is therefore a bug inside enkore.`
 		)
 	}
