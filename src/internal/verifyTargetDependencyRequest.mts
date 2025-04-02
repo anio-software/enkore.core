@@ -2,7 +2,7 @@ import type {EnkoreConfig, EnkoreCoreData} from "@enkore/spec"
 import type {TargetIdentifier} from "@enkore/primitives"
 import {getCurrentPlatformString} from "./getCurrentPlatformString.mts"
 
-export async function verifyRealmDependencyRequest(
+export async function verifyTargetDependencyRequest(
 	projectConfig: EnkoreConfig,
 	coreData: EnkoreCoreData,
 	targetIdentifier: TargetIdentifier

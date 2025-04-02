@@ -4,7 +4,7 @@ import path from "node:path"
 import {getProjectRootFromArgument} from "#~src/internal/getProjectRootFromArgument.mts"
 import {readEnkoreConfigFile} from "@enkore/common"
 import {initializeCore} from "#~src/internal/initializeCore.mts"
-import {verifyRealmDependencyRequest} from "#~src/internal/verifyRealmDependencyRequest.mts"
+import {verifyTargetDependencyRequest} from "#~src/internal/verifyTargetDependencyRequest.mts"
 import type {RealmDependenciesExportObjectV0} from "#~src/internal/RealmDependenciesExportObjectV0.d.mts"
 import {getCurrentCoreBaseDirPath} from "#~src/internal/paths/getCurrentCoreBaseDirPath.mts"
 import {createEntity} from "@enkore/spec"
@@ -18,7 +18,7 @@ const impl : API["loadTargetDependency"] = async function(
 	const projectConfig = await readEnkoreConfigFile(projectRoot)
 	const coreData = await initializeCore(projectRoot, projectConfig)
 
-	await verifyRealmDependencyRequest(projectConfig, coreData, realmName)
+	await verifyTargetDependencyRequest(projectConfig, coreData, realmName)
 
 	const {default: dependenciesOnDisk} = await import(
 		path.join(
