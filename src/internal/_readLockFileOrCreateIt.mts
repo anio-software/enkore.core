@@ -14,6 +14,8 @@ import {_debugPrint} from "./_debugPrint.mts"
 export async function _readLockFileOrCreateIt(
 	projectRoot: string, targetIdentifier: TargetIdentifier
 ): Promise<EnkoreLockFile> {
+	_debugPrint("_readLockFileOrCreateIt called")
+
 	const lockfilePath = getEnkoreLockFilePath(projectRoot)
 
 	//

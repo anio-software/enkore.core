@@ -6,6 +6,7 @@ import {
 } from "@enkore/spec"
 import type {InstalledDependency} from "./installTargetDependencies/InstalledDependency.d.mts"
 import {readLockFile} from "./readLockFile.mts"
+import {_debugPrint} from "./_debugPrint.mts"
 
 export async function updateLockFile(
 	projectRoot: string,
@@ -13,6 +14,8 @@ export async function updateLockFile(
 	installedDependencies: InstalledDependency[],
 	targetDependenciesStamp: string
 ) {
+	_debugPrint("updateLockFile called")
+
 	const lockFilePath = getEnkoreLockFilePath(projectRoot)
 
 	//
