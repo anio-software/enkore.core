@@ -17,6 +17,7 @@ import {installTargetDependencies} from "#~src/internal/installTargetDependencie
 import {_readLockFileOrCreateIt} from "#~src/internal/_readLockFileOrCreateIt.mts"
 
 function makeReturnObject(
+	projectRoot: string,
 	initialLockFile: EnkoreLockFile|null,
 	targetIntegrationAPI: EnkoreTargetIntegrationAPI
 ): Awaited<ReturnType<API["initializeProject"]>> {
@@ -85,7 +86,7 @@ const impl : API["initializeProject"] = async function(
 	if (!isCIEnvironment && !force && targetDependenciesToInstallStamp === coreData.targetDependenciesStamp) {
 		debug(`stamps match up, doing early return`)
 
-		return makeReturnObject(initialLockFile, targetIntegrationAPI)
+		return makeReturnObject(projectRoot, initialLockFile, targetIntegrationAPI)
 	}
 
 	//
@@ -138,7 +139,7 @@ const impl : API["initializeProject"] = async function(
 		npmBinaryPath
 	)
 
-	return makeReturnObject(initialLockFile, targetIntegrationAPI)
+	return makeReturnObject(projectRoot, initialLockFile, targetIntegrationAPI)
 }
 
 export const initializeProject = impl
