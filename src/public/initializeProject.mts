@@ -43,8 +43,8 @@ const impl : API["initializeProject"] = async function(
 		)
 	}
 
-	const targetIntegration = await loadTargetIntegration(projectRoot, projectConfig)
-	const targetDependenciesToInstall = await targetIntegration.getDependenciesToInstall()
+	const targetIntegrationAPI = await loadTargetIntegration(projectRoot, projectConfig)
+	const targetDependenciesToInstall = await targetIntegrationAPI.getDependenciesToInstall()
 	const targetDependenciesToInstallStamp = dependencyInstallSpecMapToStamp(targetDependenciesToInstall)
 
 	debug(`target dependencies to install stamp = '${targetDependenciesToInstallStamp}'`)
@@ -60,7 +60,7 @@ const impl : API["initializeProject"] = async function(
 	if (!isCIEnvironment && !force && targetDependenciesToInstallStamp === coreData.targetDependenciesStamp) {
 		debug(`stamps match up, doing early return`)
 
-		return targetIntegration
+		return targetIntegrationAPI
 	}
 
 	//
@@ -117,7 +117,7 @@ const impl : API["initializeProject"] = async function(
 		throw new Error(`initialLockFile is null, should never get here!`)
 	}
 
-	return targetIntegration
+	return targetIntegrationAPI
 }
 
 export const initializeProject = impl
