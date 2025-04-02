@@ -29,7 +29,7 @@ const impl : API["initializeProject"] = async function(
 	const coreData = await initializeCore(projectRoot, projectConfig)
 
 	const targetIntegration = await loadTargetIntegration(projectRoot, projectConfig)
-	const targetDependenciesToInstall = await targetIntegration.getRealmDependenciesToInstall()
+	const targetDependenciesToInstall = await targetIntegration.getDependenciesToInstall()
 	const targetDependenciesToInstallStamp = dependencyInstallSpecMapToStamp(targetDependenciesToInstall)
 
 	debug(`target dependencies to install stamp = '${targetDependenciesToInstallStamp}'`)
