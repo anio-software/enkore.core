@@ -52,7 +52,7 @@ const impl : API["loadTargetDependency"] = async function(
 	}
 
 	throw new Error(
-		`Unable to locate realm dependency '${dependencyName}'.`
+		`Unable to locate target dependency '${dependencyName}'.`
 	)
 }
 
