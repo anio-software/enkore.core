@@ -10,13 +10,13 @@ import type {TargetDependenciesExportObjectV0} from "#~src/internal/TargetDepend
 
 const impl : API["getInstalledTargetDependencyNames"] = async function(
 	root,
-	realmName
+	targetIdentifier
 ) {
 	const projectRoot = await getProjectRootFromArgument(root)
 	const projectConfig = await readEnkoreConfigFile(projectRoot)
 	const coreData = await initializeCore(projectRoot, projectConfig)
 
-	await verifyTargetDependencyRequest(projectConfig, coreData, realmName)
+	await verifyTargetDependencyRequest(projectConfig, coreData, targetIdentifier)
 
 	const {default: dependenciesOnDisk} = await import(
 		path.join(
