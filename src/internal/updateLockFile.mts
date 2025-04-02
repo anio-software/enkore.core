@@ -5,7 +5,7 @@ import {
 	type EnkoreLockFile
 } from "@enkore/spec"
 import type {InstalledDependency} from "./installTargetDependencies/InstalledDependency.d.mts"
-import {readEnkoreLockFile} from "@enkore/common"
+import {readLockFile} from "./readLockFile.mts"
 
 export async function updateLockFile(
 	projectRoot: string,
@@ -20,7 +20,7 @@ export async function updateLockFile(
 	// it should have been created by initializeProject() if it
 	// didn't exist before (NB: only in non-CI mode)
 	//
-	const currentLockFileData = await readEnkoreLockFile(projectRoot)
+	const currentLockFileData = await readLockFile(projectRoot)
 
 	currentLockFileData.targetIdentifier = projectConfig.target._targetIdentifier
 
