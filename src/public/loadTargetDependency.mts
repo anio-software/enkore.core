@@ -5,7 +5,7 @@ import {getProjectRootFromArgument} from "#~src/internal/getProjectRootFromArgum
 import {readEnkoreConfigFile} from "@enkore/common"
 import {initializeCore} from "#~src/internal/initializeCore.mts"
 import {verifyTargetDependencyRequest} from "#~src/internal/verifyTargetDependencyRequest.mts"
-import type {RealmDependenciesExportObjectV0} from "#~src/internal/RealmDependenciesExportObjectV0.d.mts"
+import type {TargetDependenciesExportObjectV0} from "#~src/internal/TargetDependenciesExportObjectV0.d.mts"
 import {getCurrentCoreBaseDirPath} from "#~src/internal/paths/getCurrentCoreBaseDirPath.mts"
 import {createEntity} from "@enkore/spec"
 
@@ -26,7 +26,7 @@ const impl : API["loadTargetDependency"] = async function(
 			"dependencies",
 			"index.mjs"
 		)
-	) as {default: RealmDependenciesExportObjectV0}
+	) as {default: TargetDependenciesExportObjectV0}
 
 	for (const dependency of dependenciesOnDisk.realmDependencies) {
 		if (dependency.name === dependencyName) {

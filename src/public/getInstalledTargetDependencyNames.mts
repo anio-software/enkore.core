@@ -6,7 +6,7 @@ import {initializeCore} from "#~src/internal/initializeCore.mts"
 import {verifyTargetDependencyRequest} from "#~src/internal/verifyTargetDependencyRequest.mts"
 import {getCurrentCoreBaseDirPath} from "#~src/internal/paths/getCurrentCoreBaseDirPath.mts"
 import path from "node:path"
-import type {RealmDependenciesExportObjectV0} from "#~src/internal/RealmDependenciesExportObjectV0.d.mts"
+import type {TargetDependenciesExportObjectV0} from "#~src/internal/TargetDependenciesExportObjectV0.d.mts"
 
 const impl : API["getInstalledTargetDependencyNames"] = async function(
 	root,
@@ -24,7 +24,7 @@ const impl : API["getInstalledTargetDependencyNames"] = async function(
 			"dependencies",
 			"index.mjs"
 		)
-	) as {default: RealmDependenciesExportObjectV0}
+	) as {default: TargetDependenciesExportObjectV0}
 
 	return dependenciesOnDisk.realmDependencies.map(dependency => {
 		return dependency.name
