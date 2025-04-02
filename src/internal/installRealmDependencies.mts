@@ -11,10 +11,10 @@ import {getCurrentCoreBaseDirPath} from "./paths/getCurrentCoreBaseDirPath.mts"
 import {randomIdentifierSync} from "@aniojs/random-ident"
 import path from "node:path"
 import fs from "node:fs/promises"
-import {installIsolatedDependencies} from "./installRealmDependencies/installIsolatedDependencies.mts"
-import {installRegularDependencies} from "./installRealmDependencies/installRegularDependencies.mts"
-import {writeDependenciesImportFile} from "./installRealmDependencies/writeDependenciesImportFile.mts"
-import type {InstalledDependency} from "./installRealmDependencies/InstalledDependency.d.mts"
+import {installIsolatedDependencies} from "./installTargetDependencies/installIsolatedDependencies.mts"
+import {installRegularDependencies} from "./installTargetDependencies/installRegularDependencies.mts"
+import {writeDependenciesImportFile} from "./installTargetDependencies/writeDependenciesImportFile.mts"
+import type {InstalledDependency} from "./installTargetDependencies/InstalledDependency.d.mts"
 
 export async function installRealmDependencies(
 	projectRoot: string,

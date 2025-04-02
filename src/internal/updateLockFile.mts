@@ -5,7 +5,7 @@ import {
 	type EnkoreConfig,
 	type EnkoreLockFile
 } from "@enkore/spec"
-import type {InstalledDependency} from "./installRealmDependencies/InstalledDependency.d.mts"
+import type {InstalledDependency} from "./installTargetDependencies/InstalledDependency.d.mts"
 
 export async function updateLockFile(
 	projectRoot: string,
