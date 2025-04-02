@@ -17,6 +17,6 @@ export async function _writeLockFile(
 	await writeAtomicFileJSON(
 		getEnkoreLockFilePath(projectRoot), createEntity(
 			"EnkoreLockFile", 0, 0, lockfileData
-		)
+		), {pretty: true}
 	)
 }
