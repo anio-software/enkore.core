@@ -23,7 +23,7 @@
     "@enkore/primitives": "^0.0.7",
     "@enkore/spec": "^0.203.0",
     "@fourtune/core": "^0.1101.0",
-    "@fourtune/realm-js": "^1.0.4",
+    "@fourtune/realm-js": "^1.0.5",
     "fourtune": "^0.30000.1"
   },
   "scripts": {
