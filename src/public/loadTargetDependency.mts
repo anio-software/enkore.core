@@ -28,7 +28,7 @@ const impl : API["loadTargetDependency"] = async function(
 		)
 	) as {default: TargetDependenciesExportObjectV0}
 
-	for (const dependency of dependenciesOnDisk.realmDependencies) {
+	for (const dependency of dependenciesOnDisk.targetDependencies) {
 		if (dependency.name === dependencyName) {
 			let importedDependencyObject : unknown = dependency.moduleImportObject
 

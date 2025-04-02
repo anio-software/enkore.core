@@ -26,7 +26,7 @@ const impl : API["getInstalledTargetDependencyNames"] = async function(
 		)
 	) as {default: TargetDependenciesExportObjectV0}
 
-	return dependenciesOnDisk.realmDependencies.map(dependency => {
+	return dependenciesOnDisk.targetDependencies.map(dependency => {
 		return dependency.name
 	})
 }

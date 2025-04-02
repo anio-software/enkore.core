@@ -1,7 +1,7 @@
 import type {NodePackageJSON} from "@enkore/primitives"
 
 export type TargetDependenciesExportObjectV0 = {
-	realmDependencies: {
+	targetDependencies: {
 		name: string
 		requestedVersion: string
 		actualVersion: string
