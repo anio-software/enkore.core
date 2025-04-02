@@ -30,7 +30,7 @@ export async function installIsolatedDependencies(
 		await writeAtomicFileJSON(
 			path.join(dependencyDirPath, "package.json"),
 			{
-				name: "enkore-realm-dependency",
+				name: "enkore-target-dependency",
 				version: "0.0.0",
 				private: true,
 				dependencies: {
@@ -47,7 +47,7 @@ export async function installIsolatedDependencies(
 			exportCode
 		)
 
-		debug(`installing isolated realm dependency '${dependency.identifier}'`)
+		debug(`installing isolated target dependency '${dependency.identifier}'`)
 
 		const {code} = await spawnAsync(
 			npmBinaryPath,
@@ -59,7 +59,7 @@ export async function installIsolatedDependencies(
 
 		if (code !== 0) {
 			throw new Error(
-				`Failed to install isolated realm dependency '${dependency.identifier}'.`
+				`Failed to install isolated target dependency '${dependency.identifier}'.`
 			)
 		}
 

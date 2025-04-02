@@ -22,7 +22,7 @@ export async function installRegularDependencies(
 		private: true
 		dependencies: {[name: string]: string}
 	} = {
-		name: "enkore-realm-dependencies",
+		name: "enkore-target-dependencies",
 		version: "0.0.0",
 		private: true,
 		dependencies: {}
@@ -54,7 +54,7 @@ export async function installRegularDependencies(
 		{pretty: true}
 	)
 
-	debug(`installing regular realm dependencies`)
+	debug(`installing regular target dependencies`)
 
 	const {code} = await spawnAsync(
 		npmBinaryPath, [
@@ -64,7 +64,7 @@ export async function installRegularDependencies(
 	)
 
 	if (code !== 0) {
-		throw new Error(`Failed to install regular realm dependencies.`)
+		throw new Error(`Failed to install regular target dependencies.`)
 	}
 
 	for (const dependency of dependencies) {

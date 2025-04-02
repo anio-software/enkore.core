@@ -33,12 +33,12 @@ export async function validateProjectRoot(
 		)
 	}
 
-	// check for enkore realm package
-	const realmPackageName = `@enkore-target/${projectConfig.target._targetIdentifier}`
+	// check for enkore target package
+	const targetPackageName = `@enkore-target/${projectConfig.target._targetIdentifier}`
 
-	if (await checkIfEnkorePackageIsInstalled(projectRoot, `${realmPackageName}`) === false) {
+	if (await checkIfEnkorePackageIsInstalled(projectRoot, `${targetPackageName}`) === false) {
 		throw new Error(
-			`The '${realmPackageName}' package is not installed at the project root.\n` +
+			`The '${targetPackageName}' package is not installed at the project root.\n` +
 			`Please make sure you have it installed.`
 		)
 	}

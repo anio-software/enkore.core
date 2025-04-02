@@ -15,7 +15,7 @@ async function declareDependency(
 		tmpDirPath, dependency
 	)
 
-	let ret = `exportObject.realmDependencies.push({\n`
+	let ret = `exportObject.targetDependencies.push({\n`
 
 	ret += `\tname: "${dependency.dependencyName}",\n`
 	ret += `\trequestedVersion: "${dependency.version}",\n`
@@ -48,8 +48,8 @@ export async function writeDependenciesImportFile(
 
 	dependenciesImportCode += `\n`
 	dependenciesImportCode += `const exportObject = {\n`
-	dependenciesImportCode += `\trealmDependenciesExportObjectVersion: 0,\n`
-	dependenciesImportCode += `\trealmDependencies: []\n`
+	dependenciesImportCode += `\ttargetDependenciesExportObjectVersion: 0,\n`
+	dependenciesImportCode += `\ttargetDependencies: []\n`
 	dependenciesImportCode += `}\n`
 	dependenciesImportCode += `\n`
 
