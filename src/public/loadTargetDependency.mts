@@ -11,14 +11,14 @@ import {createEntity} from "@enkore/spec"
 
 const impl : API["loadTargetDependency"] = async function(
 	root,
-	realmName,
+	targetIdentifier,
 	dependencyName
 ) {
 	const projectRoot = await getProjectRootFromArgument(root)
 	const projectConfig = await readEnkoreConfigFile(projectRoot)
 	const coreData = await initializeCore(projectRoot, projectConfig)
 
-	await verifyTargetDependencyRequest(projectConfig, coreData, realmName)
+	await verifyTargetDependencyRequest(projectConfig, coreData, targetIdentifier)
 
 	const {default: dependenciesOnDisk} = await import(
 		path.join(
