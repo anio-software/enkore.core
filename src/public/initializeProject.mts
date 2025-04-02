@@ -10,6 +10,7 @@ import {dependencyInstallSpecMapToArray} from "#~src/internal/dependencyInstallS
 import {getEnkoreLockFilePath} from "#~src/internal/paths/getEnkoreLockFilePath.mts"
 import {readEntityJSONFile} from "@enkore/spec"
 import {installTargetDependencies} from "#~src/internal/installTargetDependencies.mts"
+import {readEnkoreLockFileOrCreateIt} from "@enkore/common"
 
 const impl : API["initializeProject"] = async function(
 	root,
@@ -27,6 +28,18 @@ const impl : API["initializeProject"] = async function(
 	const projectRoot = await getProjectRootFromArgument(root)
 	const projectConfig = await readEnkoreConfigFile(projectRoot)
 	const coreData = await initializeCore(projectRoot, projectConfig)
+
+	//
+	// in non ci environment, create enkore-lock.json if it didn't exist already
+	//
+	if (!isCIEnvironment) {
+		_debugPrint(`making sure enkore-lock.json exists`)
+
+		await readEnkoreLockFileOrCreateIt(
+			projectRoot,
+			projectConfig.target._targetIdentifier
+		)
+	}
 
 	const targetIntegration = await loadTargetIntegration(projectRoot, projectConfig)
 	const targetDependenciesToInstall = await targetIntegration.getDependenciesToInstall()
