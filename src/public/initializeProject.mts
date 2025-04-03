@@ -67,7 +67,10 @@ const impl : API["initializeProject"] = async function(
 
 	const targetIntegrationAPI = await loadTargetIntegration(projectRoot, projectConfig)
 	const targetDependenciesToInstall = await targetIntegrationAPI.getDependenciesToInstall()
-	const targetDependenciesToInstallStamp = dependencyInstallSpecMapToStamp(targetDependenciesToInstall)
+	const targetDependenciesToInstallStamp = dependencyInstallSpecMapToStamp(
+		projectConfig.target._targetIdentifier,
+		targetDependenciesToInstall
+	)
 
 	debug(`target dependencies to install stamp = '${targetDependenciesToInstallStamp}'`)
 	debug(`installed target dependencies stamp = '${coreData.targetDependenciesStamp}'`)

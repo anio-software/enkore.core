@@ -1,5 +1,6 @@
 import type {EnkoreCoreTargetDependencyInstallSpecification} from "@enkore/spec"
 import type {NormalizedInstallSpec} from "./normalizeDependencyInstallSpec.mts"
+import type {TargetIdentifier} from "@enkore/spec/primitives"
 import {dependencyInstallSpecMapToArray} from "./dependencyInstallSpecMapToArray.mts"
 import {createHash} from "node:crypto"
 import {getProjectPackageJSON} from "@fourtune/realm-js/v0/project"
@@ -50,6 +51,7 @@ function dependencyInstallSpecToString(
 }
 
 export function dependencyInstallSpecMapToStamp(
+	targetIdentifier: TargetIdentifier,
 	dependencyInstallSpecMap: {
 		[dependencyName: string]: EnkoreCoreTargetDependencyInstallSpecification
 	}
@@ -64,5 +66,5 @@ export function dependencyInstallSpecMapToStamp(
 
 	let ret = tmp.join("\n")
 
-	return `${createHash("sha256").update(ret).digest("hex")}-${getProjectPackageJSON().version}`
+	return `${targetIdentifier}-${createHash("sha256").update(ret).digest("hex")}-${getProjectPackageJSON().version}`
 }
