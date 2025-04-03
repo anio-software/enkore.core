@@ -1,5 +1,5 @@
 import path from "node:path"
-import type {NodePackageJSON} from "@enkore/primitives"
+import type {NodePackageJSON} from "@enkore/spec/primitives"
 import type {NormalizedInstallSpec} from "../normalizeDependencyInstallSpec.mts"
 import {getDependencyDirPath} from "../paths/getDependencyDirPath.mts"
 import {readFileJSON} from "@aniojs/node-fs-file" // to be removed

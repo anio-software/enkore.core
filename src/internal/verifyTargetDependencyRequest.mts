@@ -1,5 +1,5 @@
 import type {EnkoreConfig, EnkoreCoreData} from "@enkore/spec"
-import type {TargetIdentifier} from "@enkore/primitives"
+import type {TargetIdentifier} from "@enkore/spec/primitives"
 import {getCurrentPlatformString} from "./getCurrentPlatformString.mts"
 
 export async function verifyTargetDependencyRequest(

@@ -1,4 +1,4 @@
-import type {NodePackageJSON} from "@enkore/primitives"
+import type {NodePackageJSON} from "@enkore/spec/primitives"
 
 export type TargetDependenciesExportObjectV0 = {
 	targetDependencies: {
