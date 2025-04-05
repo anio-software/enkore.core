@@ -1,8 +1,10 @@
 import type {API} from "#~src/API.d.mts"
 
 import path from "node:path"
-import {getProjectRootFromArgument} from "#~src/internal/getProjectRootFromArgument.mts"
-import {readEnkoreConfigFile} from "@enkore/common"
+import {
+	getProjectRootFromArgumentAndValidate,
+	readEnkoreConfigFile
+} from "@enkore/common"
 import {initializeCore} from "#~src/internal/initializeCore.mts"
 import {verifyTargetDependencyRequest} from "#~src/internal/verifyTargetDependencyRequest.mts"
 import type {TargetDependenciesExportObjectV0} from "#~src/internal/TargetDependenciesExportObjectV0.d.mts"
@@ -14,7 +16,7 @@ const impl : API["loadTargetDependency"] = async function(
 	targetIdentifier,
 	dependencyName
 ) {
-	const projectRoot = await getProjectRootFromArgument(root)
+	const projectRoot = await getProjectRootFromArgumentAndValidate(root)
 	const projectConfig = await readEnkoreConfigFile(projectRoot)
 	const coreData = await initializeCore(projectRoot, projectConfig)
 

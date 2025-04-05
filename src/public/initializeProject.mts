@@ -5,8 +5,10 @@ import type {
 } from "@enkore/spec"
 
 import {_debugPrint} from "#~src/internal/_debugPrint.mts"
-import {getProjectRootFromArgument} from "#~src/internal/getProjectRootFromArgument.mts"
-import {readEnkoreConfigFile} from "@enkore/common"
+import {
+	getProjectRootFromArgumentAndValidate,
+	readEnkoreConfigFile
+} from "@enkore/common"
 import {initializeCore} from "#~src/internal/initializeCore.mts"
 import {loadTargetIntegration} from "#~src/internal/loadTargetIntegration.mts"
 import {dependencyInstallSpecMapToStamp} from "#~src/internal/dependencyInstallSpecMapToStamp.mts"
@@ -49,7 +51,7 @@ const impl : API["initializeProject"] = async function(
 	debug(`force parameter is ` + (force ? `set` : `not set`))
 	debug(`isCIEnvironment parameter is ` + (isCIEnvironment ? `set` : `not set`))
 
-	const projectRoot = await getProjectRootFromArgument(root)
+	const projectRoot = await getProjectRootFromArgumentAndValidate(root)
 	const projectConfig = await readEnkoreConfigFile(projectRoot)
 	const coreData = await initializeCore(projectRoot, projectConfig)
 

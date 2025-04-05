@@ -1,7 +1,9 @@
 import type {API} from "#~src/API.d.mts"
 
-import {getProjectRootFromArgument} from "#~src/internal/getProjectRootFromArgument.mts"
-import {readEnkoreConfigFile} from "@enkore/common"
+import {
+	getProjectRootFromArgumentAndValidate,
+	readEnkoreConfigFile
+} from "@enkore/common"
 import {initializeCore} from "#~src/internal/initializeCore.mts"
 import {verifyTargetDependencyRequest} from "#~src/internal/verifyTargetDependencyRequest.mts"
 import {getCurrentCoreBaseDirPath} from "#~src/internal/paths/getCurrentCoreBaseDirPath.mts"
@@ -12,7 +14,7 @@ const impl : API["getInstalledTargetDependencyNames"] = async function(
 	root,
 	targetIdentifier
 ) {
-	const projectRoot = await getProjectRootFromArgument(root)
+	const projectRoot = await getProjectRootFromArgumentAndValidate(root)
 	const projectConfig = await readEnkoreConfigFile(projectRoot)
 	const coreData = await initializeCore(projectRoot, projectConfig)
 
