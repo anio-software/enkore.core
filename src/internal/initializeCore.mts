@@ -1,7 +1,8 @@
 import {
 	type EnkoreConfig,
 	readEntityJSONFile,
-	type EnkoreCoreData
+	type EnkoreCoreData,
+	createEntity
 } from "@enkore/spec"
 
 import {_debugPrint} from "./_debugPrint.mts"
@@ -39,14 +40,20 @@ export async function initializeCore(
 
 	const coreDataFilePath = getCoreDataFilePath(projectRoot)
 
-	const currentCoreData =  await readEntityJSONFile(
-		coreDataFilePath, "EnkoreCoreData", 0, 0, {
+	const currentCoreData: EnkoreCoreData = await (async () => {
+		const defaultCoreData = createEntity("EnkoreCoreData", 0, 0, {
 			platform: getCurrentPlatformString(),
 			targetIdentifier: projectConfig.target._targetIdentifier,
 			targetDependenciesIntegrityHash: "",
 			targetDependenciesStamp: ""
+		})
+
+		try {
+			return await readEntityJSONFile(coreDataFilePath, "EnkoreCoreData", 0, 0)
+		} catch (e) {
+			return defaultCoreData
 		}
-	)
+	})()
 
 	await writeAtomicFileJSON(
 		coreDataFilePath,
