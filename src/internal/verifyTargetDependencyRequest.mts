@@ -8,11 +8,11 @@ export async function verifyTargetDependencyRequest(
 	targetIdentifier: TargetIdentifier
 ) {
 	// todo: cross check with coreData.targetIdentifier
-	if (projectConfig.target._targetIdentifier !== targetIdentifier) {
+	if (projectConfig.target.name !== targetIdentifier) {
 		throw new Error(
 			`Refusing to serve target dependency of a different target:\n\n` +
 			`Expected target: ${targetIdentifier}\n` +
-			`Actual target  : ${projectConfig.target._targetIdentifier}\n\n` +
+			`Actual target  : ${projectConfig.target.name}\n\n` +
 			`Please do a clean install of the target dependencies.`
 		)
 	}

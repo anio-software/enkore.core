@@ -43,7 +43,7 @@ export async function initializeCore(
 	const currentCoreData: EnkoreCoreData = await (async () => {
 		const defaultCoreData = createEntity("EnkoreCoreData", 0, 0, {
 			platform: getCurrentPlatformString(),
-			targetIdentifier: projectConfig.target._targetIdentifier,
+			targetIdentifier: projectConfig.target.name,
 			targetDependenciesIntegrityHash: "",
 			targetDependenciesStamp: ""
 		})

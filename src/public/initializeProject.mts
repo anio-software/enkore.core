@@ -63,14 +63,14 @@ const impl : API["initializeProject"] = async function(
 
 		initialLockFile = await _readLockFileOrCreateIt(
 			projectRoot,
-			projectConfig.target._targetIdentifier
+			projectConfig.target.name
 		)
 	}
 
 	const targetIntegrationAPI = await loadTargetIntegration(projectRoot, projectConfig)
 	const targetDependenciesToInstall = await targetIntegrationAPI.getDependenciesToInstall()
 	const targetDependenciesToInstallStamp = dependencyInstallSpecMapToStamp(
-		projectConfig.target._targetIdentifier,
+		projectConfig.target.name,
 		targetDependenciesToInstall
 	)
 

@@ -12,7 +12,7 @@ export async function loadTargetIntegration(
 ) : Promise<EnkoreTargetIntegrationAPI> {
 	const importPath = await resolveImportSpecifierFromProjectRoot(
 		projectRoot,
-		`@enkore-target/${projectConfig.target._targetIdentifier}/targetIntegrationAPI`
+		`@enkore-target/${projectConfig.target.name}/targetIntegrationAPI`
 	)
 
 	if (importPath === false) {
