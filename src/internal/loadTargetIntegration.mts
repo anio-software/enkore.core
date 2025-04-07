@@ -10,7 +10,7 @@ export async function loadTargetIntegration(
 	projectRoot: string,
 	projectConfig: EnkoreConfig
 ) : Promise<EnkoreTargetIntegrationAPI> {
-	const importPath = await resolveImportSpecifierFromProjectRoot(
+	const importPath = resolveImportSpecifierFromProjectRoot(
 		projectRoot,
 		`@enkore-target/${projectConfig.target.name}/targetIntegrationAPI`
 	)
