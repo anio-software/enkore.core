@@ -44,9 +44,9 @@ const impl: API["loadToolchain"] = async function(
 	)
 
 	return {
+		...toolchain,
 		toolchainID: coreData.currentToolchain.installedID,
-		toolchainRev: coreData.currentToolchain.installedRev,
-		...toolchain
+		toolchainRev: coreData.currentToolchain.installedRev
 	}
 }
 
