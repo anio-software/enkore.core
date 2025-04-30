@@ -78,7 +78,6 @@ const impl: API["initializeProject"] = async function(
 
 		initialLockFile = await _readLockFileOrCreateIt(
 			projectRoot,
-			projectConfig.target.name,
 			toolchainToInstall
 		)
 	}
