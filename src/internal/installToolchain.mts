@@ -52,7 +52,8 @@ export async function installToolchain(
 	await fs.rename(tmpDirPath, destinationDirPath)
 
 	// ---- //
-	coreData.targetDependenciesStamp = dependenciesStamp
+	coreData.toolchainID = toolchainID
+	coreData.toolchainRev = toolchainRev
 
 	await writeAtomicFileJSON(
 		getCoreDataFilePath(projectRoot),
