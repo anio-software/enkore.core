@@ -2,6 +2,7 @@ import {
 	type EnkoreConfig,
 	readEntityJSONFile,
 	type EnkoreCoreData,
+	type ToolchainIDs,
 	createEntity
 } from "@enkore/spec"
 
@@ -33,7 +34,8 @@ async function cleanCoreDirectory(
 
 export async function initializeCore(
 	projectRoot: string,
-	projectConfig: EnkoreConfig
+	projectConfig: EnkoreConfig,
+	toolchainID: ToolchainIDs
 ) : Promise<EnkoreCoreData> {
 	await mkdirp(getCurrentCoreBaseDirPath(projectRoot))
 	await cleanCoreDirectory(projectRoot)
@@ -44,8 +46,8 @@ export async function initializeCore(
 		const defaultCoreData = createEntity("EnkoreCoreData", 0, 0, {
 			platform: getCurrentPlatformString(),
 			targetIdentifier: projectConfig.target.name,
-			targetDependenciesIntegrityHash: "",
-			targetDependenciesStamp: ""
+			toolchainID,
+			toolchainRev: -1
 		})
 
 		try {

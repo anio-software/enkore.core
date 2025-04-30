@@ -51,13 +51,14 @@ const impl : API["initializeProject"] = async function(
 
 	const projectRoot = await getProjectRootFromArgumentAndValidate(root)
 	const projectConfig = await readEnkoreConfigFile(projectRoot)
-	const coreData = await initializeCore(projectRoot, projectConfig)
 
 	const targetIntegrationAPI = await loadTargetIntegration(projectRoot, projectConfig)
 	const {
 		toolchainID,
 		toolchainRev
 	} = await targetIntegrationAPI.getToolchainPackageDescriptor()
+
+	const coreData = await initializeCore(projectRoot, projectConfig, toolchainID)
 
 	//
 	// in non ci environment, create enkore-lock.json if it didn't exist already
