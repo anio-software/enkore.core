@@ -8,3 +8,4 @@ export {createTemporaryDirectory} from "#~src/public/createTemporaryDirectory.mt
 export {initializeProject} from "#~src/public/initializeProject.mts"
 export {setDebugMode} from "#~src/public/setDebugMode.mts"
 export {getDebugMode} from "#~src/public/getDebugMode.mts"
+export {loadToolchain} from "#~src/public/loadToolchain.mts"
