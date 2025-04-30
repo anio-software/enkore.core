@@ -77,21 +77,30 @@ const impl: API["initializeProject"] = async function(
 	// - toolchain is installed and matches the requested one
 	//
 	function checkFirstEarlyExit() {
+		const print = (str: string) => {
+			_debugPrint(`checkFirstEarlyExit: ${str}`)
+		}
+
 		if (isCIEnvironment) {
+			print(`isCIEnvironment is true`)
 			return false
 		} else if (force) {
+			print(`force is true`)
 			return false
 		} else if (coreData.currentToolchain === false) {
+			print(`no toolchain installed`)
 			return false
 		}
 
 		const {currentToolchain} = coreData
 
 		if (currentToolchain.installedOnPlatform !== getCurrentPlatformString()) {
+			print(`platform does not match`)
 			return false
 		}
 
 		if (currentToolchain.installedID !== toolchainToInstall[0]) {
+			print(`toolchain id does not match`)
 			return false
 		}
 
