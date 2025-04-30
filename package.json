@@ -19,8 +19,8 @@
     "@aniojs/node-fs": "^0.3.1",
     "@aniojs/node-fs-file": "^0.2.0",
     "@aniojs/random-ident": "^0.1.2",
-    "@enkore/common": "^0.0.108",
-    "@enkore/spec": "^0.260.2",
+    "@enkore/common": "^0.0.109",
+    "@enkore/spec": "^0.261.0",
     "@fourtune/core": "^0.1101.0",
     "@fourtune/realm-js": "^1.0.5",
     "fourtune": "^0.30000.1"
