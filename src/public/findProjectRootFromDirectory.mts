@@ -4,10 +4,10 @@ import {
 	findProjectRootFromDirectory as findProjectRoot
 } from "@enkore/common"
 
-const impl : API["findProjectRootFromDirectory"] = async function(
+const impl: API["findProjectRootFromDirectory"] = async function(
 	startDirectory
 ) {
-	const projectRoot = await findProjectRoot(startDirectory)
+	const projectRoot = findProjectRoot(startDirectory)
 
 	_debugPrint(`findProjectRootFromDirectory: ${projectRoot}`)
 
