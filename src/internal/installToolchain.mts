@@ -3,7 +3,6 @@ import {
 	type EnkoreCoreData
 } from "@enkore/spec"
 
-import type {NormalizedInstallSpec} from "./normalizeDependencyInstallSpec.mts"
 import {writeAtomicFileJSON, mkdirp, remove} from "@aniojs/node-fs"
 import {getCoreDataFilePath} from "./paths/getCoreDataFilePath.mts"
 import {updateLockFile} from "./updateLockFile.mts"
