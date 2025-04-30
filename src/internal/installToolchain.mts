@@ -11,6 +11,8 @@ import {getCurrentCoreBaseDirPath} from "./paths/getCurrentCoreBaseDirPath.mts"
 import {randomIdentifierSync} from "@aniojs/random-ident"
 import path from "node:path"
 import fs from "node:fs/promises"
+import {_debugPrint} from "./_debugPrint.mts"
+import {spawnAsync} from "./spawnAsync.mts"
 
 export async function installToolchain(
 	projectRoot: string,
@@ -29,7 +31,34 @@ export async function installToolchain(
 	await mkdirp(tmpDirPath)
 
 	// -- ///
+	await writeAtomicFileJSON(
+		path.join(tmpDirPath, "package.json"),
+		{
+			name: "enkore-toolchain",
+			version: "0.0.0",
+			private: true,
+			dependencies: {
+				[toolchainID]: `0.0.${toolchainRev}`
+			}
+		},
+		{pretty: true}
+	)
 
+	_debugPrint(`installing toolchain '${toolchainID}@${toolchainRev}'`)
+
+	const {code} = await spawnAsync(
+		npmBinaryPath,
+		[
+			"--no-package-lock",
+			"install"
+		], tmpDirPath
+	)
+
+	if (code !== 0) {
+		throw new Error(
+			`Failed to install toolchain '${toolchainID}@${toolchainRev}'.`
+		)
+	}
 	// ---- //
 	const destinationDirPath = path.join(
 		getCurrentCoreBaseDirPath(projectRoot), "toolchain"
