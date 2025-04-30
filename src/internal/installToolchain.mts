@@ -45,7 +45,7 @@ export async function installToolchain(
 
 	// ---- //
 	const destinationDirPath = path.join(
-		getCurrentCoreBaseDirPath(projectRoot), "dependencies"
+		getCurrentCoreBaseDirPath(projectRoot), "toolchain"
 	)
 
 	await remove(destinationDirPath)
