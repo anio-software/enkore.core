@@ -8,7 +8,7 @@ import path from "node:path"
 import {getCurrentCoreBaseDirPath} from "#~src/internal/paths/getCurrentCoreBaseDirPath.mts"
 
 const impl: API["loadToolchain"] = async function(
-	root, expectedToolchainID
+	root
 ) {
 	const projectRoot = await getProjectRootFromArgumentAndValidate(root)
 	const coreData = await initialize(projectRoot)
@@ -16,10 +16,6 @@ const impl: API["loadToolchain"] = async function(
 	if (!coreData.currentToolchain) {
 		throw new Error(
 			`You are running enkore without having a toolchain installed!`
-		)
-	} else if (coreData.currentToolchain.installedID !== expectedToolchainID) {
-		throw new Error(
-			`A toolchain is installed, but it's not the one requested/expected.`
 		)
 	}
 
