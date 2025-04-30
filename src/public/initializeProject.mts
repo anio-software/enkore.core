@@ -74,24 +74,21 @@ const impl : API["initializeProject"] = async function(
 		)
 	}
 
-	const targetDependenciesToInstall = await targetIntegrationAPI.getDependenciesToInstall()
-	const targetDependenciesToInstallStamp = dependencyInstallSpecMapToStamp(
-		projectConfig.target.name,
-		targetDependenciesToInstall
-	)
+	const toolchainToInstall = `${toolchainID}@${toolchainRev}`
+	const installedToolchain = `${coreData.toolchainID}@${coreData.toolchainRev}`
 
-	debug(`target dependencies to install stamp = '${targetDependenciesToInstallStamp}'`)
-	debug(`installed target dependencies stamp = '${coreData.targetDependenciesStamp}'`)
+	debug(`toolchain to install = '${toolchainToInstall}'`)
+	debug(`installed toolchain = '${installedToolchain}'`)
 
 	//
 	// check early exit condition:
 	//
 	// - NOT in a CI environment
 	// - force NOT set
-	// - target dependencies stamps match up
+	// - toolchain specifiers match up
 	//
-	if (!isCIEnvironment && !force && targetDependenciesToInstallStamp === coreData.targetDependenciesStamp) {
-		debug(`stamps match up, doing early return`)
+	if (!isCIEnvironment && !force && toolchainToInstall === installedToolchain) {
+		debug(`versions match up, doing early return`)
 
 		return makeReturnObject(projectRoot, initialLockFile, targetIntegrationAPI)
 	}
@@ -100,7 +97,7 @@ const impl : API["initializeProject"] = async function(
 	// check early error condition:
 	//
 	// - in CI environment
-	// - lockfile stamps do not match up
+	// - lockfile toolchain versions do not match up
 	//
 	if (isCIEnvironment) {
 		//
@@ -111,12 +108,13 @@ const impl : API["initializeProject"] = async function(
 		//
 		try {
 			const lockfileData = await readLockFile(projectRoot)
+			const lockfileToolchainSpecifier = `${lockfileData.toolchainID}@${lockfileData.toolchainRev}`
 
-			if (lockfileData.targetDependenciesStamp !== targetDependenciesToInstallStamp) {
+			if (lockfileToolchainSpecifier !== toolchainToInstall) {
 				throw new Error(
-					`Target dependencies stamp inside enkore-lock.json does not match target dependencies to be installed.\n\n` +
-					`Expected stamp          : ${targetDependenciesToInstallStamp}\n` +
-					`Stamp saved in lockfile : ${lockfileData.targetDependenciesStamp}\n`
+					`Toolchain inside enkore-lock.json does not match toolchain to be installed.\n\n` +
+					`Expected toolchain          : ${toolchainToInstall}\n` +
+					`Toolchain saved in lockfile : ${lockfileToolchainSpecifier}\n`
 				)
 			}
 
