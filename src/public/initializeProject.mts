@@ -10,6 +10,7 @@ import {
 import {loadTargetIntegration} from "#~src/internal/loadTargetIntegration.mts"
 import {formatToolchainSpecifier} from "#~src/internal/formatToolchainSpecifier.mts"
 import {_debugPrint} from "#~src/internal/_debugPrint.mjs"
+import {initialize} from "#~src/internal/initialize.mts"
 import {_readLockFileOrCreateIt} from "#~src/internal/_readLockFileOrCreateIt.mts"
 
 const impl: API["initializeProject"] = async function(
@@ -43,6 +44,8 @@ const impl: API["initializeProject"] = async function(
 	_debugPrint(
 		`toolchainToInstall is '${formatToolchainSpecifier(toolchainToInstall)}'`
 	)
+
+	const coreData = await initialize(projectRoot)
 
 	//
 	// in non ci environment, create enkore-lock.json if it didn't exist already
