@@ -11,10 +11,6 @@ import {getCurrentCoreBaseDirPath} from "./paths/getCurrentCoreBaseDirPath.mts"
 import {randomIdentifierSync} from "@aniojs/random-ident"
 import path from "node:path"
 import fs from "node:fs/promises"
-import {installIsolatedDependencies} from "./installTargetDependencies/installIsolatedDependencies.mts"
-import {installRegularDependencies} from "./installTargetDependencies/installRegularDependencies.mts"
-import {writeDependenciesImportFile} from "./installTargetDependencies/writeDependenciesImportFile.mts"
-import type {InstalledDependency} from "./installTargetDependencies/InstalledDependency.d.mts"
 
 export async function installToolchain(
 	projectRoot: string,
@@ -33,15 +29,6 @@ export async function installToolchain(
 	await mkdirp(tmpDirPath)
 
 	// -- ///
-	const isolatedDependencies = dependencies.filter(dep => dep.isolated)
-	const regularDependencies = dependencies.filter(dep => !dep.isolated)
-
-	const installedDependencies : InstalledDependency[] = [
-		...await installIsolatedDependencies(tmpDirPath, isolatedDependencies, npmBinaryPath),
-		...await installRegularDependencies(tmpDirPath, regularDependencies, npmBinaryPath)
-	]
-
-	await writeDependenciesImportFile(tmpDirPath, dependencies)
 
 	// ---- //
 	const destinationDirPath = path.join(
