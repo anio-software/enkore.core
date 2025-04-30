@@ -11,8 +11,6 @@ import {
 } from "@enkore/common"
 import {initializeCore} from "#~src/internal/initializeCore.mts"
 import {loadTargetIntegration} from "#~src/internal/loadTargetIntegration.mts"
-import {dependencyInstallSpecMapToStamp} from "#~src/internal/dependencyInstallSpecMapToStamp.mts"
-import {dependencyInstallSpecMapToArray} from "#~src/internal/dependencyInstallSpecMapToArray.mts"
 import {readLockFile} from "#~src/internal/readLockFile.mts"
 import {installTargetDependencies} from "#~src/internal/installTargetDependencies.mts"
 import {_readLockFileOrCreateIt} from "#~src/internal/_readLockFileOrCreateIt.mts"
