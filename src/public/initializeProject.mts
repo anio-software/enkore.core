@@ -104,7 +104,12 @@ const impl: API["initializeProject"] = async function(
 			return false
 		}
 
-		return currentToolchain.installedRev === toolchainToInstall[1]
+		if (currentToolchain.installedRev !== toolchainToInstall[1]) {
+			print(`toolchain rev does not match`)
+			return false
+		}
+
+		return true
 	}
 }
 
