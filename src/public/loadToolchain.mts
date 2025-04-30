@@ -50,4 +50,4 @@ const impl: API["loadToolchain"] = async function(
 	}
 }
 
-export const loadToolchain = impl
+export const loadToolchain: API["loadToolchain"] = impl
