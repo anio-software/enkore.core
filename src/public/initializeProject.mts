@@ -8,7 +8,7 @@ import {
 } from "@enkore/common"
 import {loadTargetIntegration} from "#~src/internal/loadTargetIntegration.mts"
 import {formatToolchainSpecifier} from "#~src/internal/formatToolchainSpecifier.mts"
-import { _debugPrint } from "#~src/internal/_debugPrint.mjs"
+import {_debugPrint} from "#~src/internal/_debugPrint.mjs"
 
 const impl: API["initializeProject"] = async function(
 	root,
