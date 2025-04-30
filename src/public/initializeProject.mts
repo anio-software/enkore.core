@@ -53,6 +53,12 @@ const impl : API["initializeProject"] = async function(
 	const projectConfig = await readEnkoreConfigFile(projectRoot)
 	const coreData = await initializeCore(projectRoot, projectConfig)
 
+	const targetIntegrationAPI = await loadTargetIntegration(projectRoot, projectConfig)
+	const {
+		toolchainID,
+		toolchainRev
+	} = await targetIntegrationAPI.getToolchainPackageDescriptor()
+
 	//
 	// in non ci environment, create enkore-lock.json if it didn't exist already
 	//
@@ -61,11 +67,12 @@ const impl : API["initializeProject"] = async function(
 
 		initialLockFile = await _readLockFileOrCreateIt(
 			projectRoot,
-			projectConfig.target.name
+			projectConfig.target.name,
+			toolchainID,
+			toolchainRev
 		)
 	}
 
-	const targetIntegrationAPI = await loadTargetIntegration(projectRoot, projectConfig)
 	const targetDependenciesToInstall = await targetIntegrationAPI.getDependenciesToInstall()
 	const targetDependenciesToInstallStamp = dependencyInstallSpecMapToStamp(
 		projectConfig.target.name,
