@@ -64,7 +64,7 @@ export async function installToolchain(
 	await updateLockFile(
 		projectRoot,
 		projectConfig,
-		installedDependencies,
-		dependenciesStamp
+		toolchainID,
+		toolchainRev
 	)
 }
