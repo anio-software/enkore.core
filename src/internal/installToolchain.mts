@@ -1,6 +1,7 @@
 import {
 	type EnkoreConfig,
-	type EnkoreCoreData
+	type EnkoreCoreData,
+	type ToolchainIDs
 } from "@enkore/spec"
 
 import {writeAtomicFileJSON, mkdirp, remove} from "@aniojs/node-fs"
@@ -19,8 +20,8 @@ export async function installToolchain(
 	projectRoot: string,
 	projectConfig: EnkoreConfig,
 	coreData: EnkoreCoreData,
-	dependencies: NormalizedInstallSpec[],
-	dependenciesStamp: string,
+	toolchainID: ToolchainIDs,
+	toolchainRev: number,
 	npmBinaryPath: string
 ) {
 	projectConfig; // unused var

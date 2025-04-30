@@ -137,8 +137,8 @@ const impl : API["initializeProject"] = async function(
 		projectRoot,
 		projectConfig,
 		coreData,
-		dependencyInstallSpecMapToArray(targetDependenciesToInstall),
-		targetDependenciesToInstallStamp,
+		toolchainID,
+		toolchainRev,
 		npmBinaryPath
 	)
 
