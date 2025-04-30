@@ -6,7 +6,5 @@ export {findProjectRootFromDirectory} from "#~src/public/findProjectRootFromDire
 export {createTemporaryFile} from "#~src/public/createTemporaryFile.mts"
 export {createTemporaryDirectory} from "#~src/public/createTemporaryDirectory.mts"
 export {initializeProject} from "#~src/public/initializeProject.mts"
-export {loadTargetDependency} from "#~src/public/loadTargetDependency.mts"
 export {setDebugMode} from "#~src/public/setDebugMode.mts"
 export {getDebugMode} from "#~src/public/getDebugMode.mts"
-export {getInstalledTargetDependencyNames} from "#~src/public/getInstalledTargetDependencyNames.mts"
