@@ -35,7 +35,7 @@ const impl: API["loadToolchain"] = async function(
 		)
 	}
 
-	return await import(
+	const toolchain = await import(
 		path.join(
 			getCurrentCoreBaseDirPath(projectRoot),
 			"toolchain",
@@ -46,6 +46,12 @@ const impl: API["loadToolchain"] = async function(
 			"index.mjs"
 		)
 	)
+
+	return {
+		toolchainID: coreData.currentToolchain.installedID,
+		toolchainRev: coreData.currentToolchain.installedRev,
+		...toolchain
+	}
 }
 
 export const loadToolchain = impl
