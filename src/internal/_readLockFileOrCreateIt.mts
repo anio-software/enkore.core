@@ -12,7 +12,8 @@ import {getEnkoreLockFilePath} from "#~src/internal/paths/getEnkoreLockFilePath.
 import {_debugPrint} from "./_debugPrint.mts"
 
 export async function _readLockFileOrCreateIt(
-	projectRoot: string, targetIdentifier: TargetIdentifier
+	projectRoot: string,
+	targetIdentifier: TargetIdentifier
 ): Promise<EnkoreLockFile> {
 	_debugPrint("_readLockFileOrCreateIt called")
 
