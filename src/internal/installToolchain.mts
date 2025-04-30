@@ -16,7 +16,7 @@ import {installRegularDependencies} from "./installTargetDependencies/installReg
 import {writeDependenciesImportFile} from "./installTargetDependencies/writeDependenciesImportFile.mts"
 import type {InstalledDependency} from "./installTargetDependencies/InstalledDependency.d.mts"
 
-export async function installTargetDependencies(
+export async function installToolchain(
 	projectRoot: string,
 	projectConfig: EnkoreConfig,
 	coreData: EnkoreCoreData,
