@@ -61,8 +61,8 @@ const impl: API["initializeProject"] = async function(
 		)
 	}
 
-	if (checkFirstEarlyExit()) {
-		_debugPrint(`check first early exit was successfull`)
+	if (checkEarlyExit()) {
+		_debugPrint(`check early exit was successfull`)
 
 		return {} as any
 	}
@@ -76,9 +76,9 @@ const impl: API["initializeProject"] = async function(
 	// - force NOT set
 	// - toolchain is installed and matches the requested one
 	//
-	function checkFirstEarlyExit() {
+	function checkEarlyExit() {
 		const print = (str: string) => {
-			_debugPrint(`checkFirstEarlyExit: ${str}`)
+			_debugPrint(`checkEarlyExit: ${str}`)
 		}
 
 		if (isCIEnvironment) {
