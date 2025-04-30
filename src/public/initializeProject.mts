@@ -12,6 +12,7 @@ import {formatToolchainSpecifier} from "#~src/internal/formatToolchainSpecifier.
 import {_debugPrint} from "#~src/internal/_debugPrint.mjs"
 import {initialize} from "#~src/internal/initialize.mts"
 import {_readLockFileOrCreateIt} from "#~src/internal/_readLockFileOrCreateIt.mts"
+import {getCurrentPlatformString} from "#~src/internal/getCurrentPlatformString.mts"
 
 const impl: API["initializeProject"] = async function(
 	root,
@@ -60,7 +61,42 @@ const impl: API["initializeProject"] = async function(
 		)
 	}
 
+	if (checkFirstEarlyExit()) {
+		_debugPrint(`check first early exit was successfull`)
+
+		return {} as any
+	}
+
 	return {} as any
+
+	//
+	// check early exit condition:
+	//
+	// - NOT in a CI environment
+	// - force NOT set
+	// - toolchain is installed and matches the requested one
+	//
+	function checkFirstEarlyExit() {
+		if (isCIEnvironment) {
+			return false
+		} else if (force) {
+			return false
+		} else if (coreData.currentToolchain === false) {
+			return false
+		}
+
+		const {currentToolchain} = coreData
+
+		if (currentToolchain.installedOnPlatform !== getCurrentPlatformString()) {
+			return false
+		}
+
+		if (currentToolchain.installedID !== toolchainToInstall[0]) {
+			return false
+		}
+
+		return currentToolchain.installedRev === toolchainToInstall[1]
+	}
 }
 
 export const initializeProject = impl
