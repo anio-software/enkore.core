@@ -13,6 +13,7 @@ import {_debugPrint} from "#~src/internal/_debugPrint.mjs"
 import {initialize} from "#~src/internal/initialize.mts"
 import {_readLockFileOrCreateIt} from "#~src/internal/_readLockFileOrCreateIt.mts"
 import {getCurrentPlatformString} from "#~src/internal/getCurrentPlatformString.mts"
+import {readLockFile} from "#~src/internal/readLockFile.mts"
 
 const impl: API["initializeProject"] = async function(
 	root,
@@ -65,6 +66,45 @@ const impl: API["initializeProject"] = async function(
 		_debugPrint(`check early exit was successfull`)
 
 		return {} as any
+	}
+
+	//
+	// check early error condition:
+	//
+	// - in CI environment
+	// - lockfile toolchain versions do not match up
+	//
+	if (isCIEnvironment) {
+		//
+		// in a CI environment we want to make sure
+		// that the toolchain specifier matches the one
+		// saved in the enkore lockfile
+		// if not, we throw an error and abort initializing the project
+		//
+		try {
+			const lockfileData = await readLockFile(projectRoot)
+			const lockfileToolchainSpecifier = formatToolchainSpecifier(lockfileData.toolchain)
+			const toolchainToInstallSpecifier = formatToolchainSpecifier(toolchainToInstall)
+
+			if (lockfileToolchainSpecifier !== toolchainToInstallSpecifier) {
+				throw new Error(
+					`Toolchain inside enkore-lock.json does not match toolchain to be installed.\n\n` +
+					`Expected toolchain          : ${toolchainToInstallSpecifier}\n` +
+					`Toolchain saved in lockfile : ${lockfileToolchainSpecifier}\n`
+				)
+			}
+
+			initialLockFile = lockfileData
+		} catch (error) {
+			let errorReason = error instanceof Error ? error.message : "unknown"
+
+			throw new Error(
+				`There was an issue processing the enkore-lock.json lockfile.\n` +
+				`In a CI environment, this is considered a fatal error.\n\n` +
+				`Error: ${errorReason}\n\n` +
+				`Please make sure to update and commit the enkore-lock.json lockfile.`
+			)
+		}
 	}
 
 	return {} as any
