@@ -8,9 +8,9 @@ import {
 	getProjectRootFromArgumentAndValidate,
 	readEnkoreConfigFile
 } from "@enkore/common"
+import {log} from "@enkore/debug"
 import {loadTargetIntegration} from "#~src/internal/loadTargetIntegration.mts"
 import {formatToolchainSpecifier} from "#~src/internal/formatToolchainSpecifier.mts"
-import {_debugPrint} from "#~src/internal/_debugPrint.mjs"
 import {initialize} from "#~src/internal/initialize.mts"
 import {_readLockFileOrCreateIt} from "#~src/internal/_readLockFileOrCreateIt.mts"
 import {getCurrentPlatformString} from "#~src/internal/getCurrentPlatformString.mts"
@@ -61,11 +61,11 @@ const impl: API["initializeProject"] = async function(
 		return await targetIntegrationAPI.getToolchainToInstall()
 	})()
 
-	_debugPrint(`force parameter is ` + (force ? `set` : `not set`))
-	_debugPrint(`isCIEnvironment parameter is ` + (isCIEnvironment ? `set` : `not set`))
-	_debugPrint(`npmBinaryPath is '${npmBinaryPath}'`)
+	log(`force parameter is ` + (force ? `set` : `not set`))
+	log(`isCIEnvironment parameter is ` + (isCIEnvironment ? `set` : `not set`))
+	log(`npmBinaryPath is '${npmBinaryPath}'`)
 
-	_debugPrint(
+	log(
 		`toolchainToInstall is '${formatToolchainSpecifier(toolchainToInstall)}'`
 	)
 
@@ -75,7 +75,7 @@ const impl: API["initializeProject"] = async function(
 	// in non ci environment, create enkore-lock.json if it didn't exist already
 	//
 	if (!isCIEnvironment) {
-		_debugPrint(`making sure enkore-lock.json exists`)
+		log(`making sure enkore-lock.json exists`)
 
 		initialLockFile = await _readLockFileOrCreateIt(
 			projectRoot,
@@ -84,7 +84,7 @@ const impl: API["initializeProject"] = async function(
 	}
 
 	if (checkEarlyExit()) {
-		_debugPrint(`check early exit was successfull`)
+		log(`check early exit was successfull`)
 
 		return makeReturnObject(
 			projectRoot,
@@ -154,7 +154,7 @@ const impl: API["initializeProject"] = async function(
 	//
 	function checkEarlyExit() {
 		const print = (str: string) => {
-			_debugPrint(`checkEarlyExit: ${str}`)
+			log(`checkEarlyExit: ${str}`)
 		}
 
 		if (isCIEnvironment) {

@@ -1,5 +1,5 @@
 import type {API} from "#~src/API.d.mts"
-import {_debugPrint} from "#~src/internal/_debugPrint.mts"
+import {log} from "@enkore/debug"
 import {
 	findProjectRootFromDirectory as findProjectRoot
 } from "@enkore/common"
@@ -9,7 +9,7 @@ const impl: API["findProjectRootFromDirectory"] = async function(
 ) {
 	const projectRoot = findProjectRoot(startDirectory)
 
-	_debugPrint(`findProjectRootFromDirectory: ${projectRoot}`)
+	log(`findProjectRootFromDirectory: ${projectRoot}`)
 
 	return projectRoot
 }

@@ -6,13 +6,13 @@ import {
 
 import {getEnkoreLockFilePath} from "./paths/getEnkoreLockFilePath.mts"
 import {writeAtomicFileJSON} from "@aniojs/node-fs"
-import {_debugPrint} from "./_debugPrint.mts"
+import {log} from "@enkore/debug"
 
 export async function _writeLockFile(
 	projectRoot: string,
 	lockfileData: RawType<EnkoreLockFile_V0_Rev0>
 ) {
-	_debugPrint(`_writeLockFile called`)
+	log(`_writeLockFile called`)
 
 	await writeAtomicFileJSON(
 		getEnkoreLockFilePath(projectRoot), createEntity(

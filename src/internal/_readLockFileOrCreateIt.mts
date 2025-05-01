@@ -4,15 +4,15 @@ import {
 	readEntityJSONFile,
 	createEntity
 } from "@enkore/spec"
-import {_debugPrint} from "./_debugPrint.mts"
 import {getEnkoreLockFilePath} from "./paths/getEnkoreLockFilePath.mts"
 import {isFileSync, writeAtomicFileJSON} from "@aniojs/node-fs"
+import {log} from "@enkore/debug"
 
 export async function _readLockFileOrCreateIt(
 	projectRoot: string,
 	toolchain: ValidToolchainCombinations
 ): Promise<EnkoreLockFile> {
-	_debugPrint("_readLockFileOrCreateIt called")
+	log("_readLockFileOrCreateIt called")
 
 	const lockfilePath = getEnkoreLockFilePath(projectRoot)
 
@@ -21,7 +21,7 @@ export async function _readLockFileOrCreateIt(
 	// (checking and then creating the file if it doesn't exist)
 	//
 	if (isFileSync(lockfilePath)) {
-		_debugPrint(`enkore-lock.json file exists`)
+		log(`enkore-lock.json file exists`)
 
 		return await readEntityJSONFile(
 			lockfilePath, "EnkoreLockFile", 0, 0
@@ -35,7 +35,7 @@ export async function _readLockFileOrCreateIt(
 
 	await writeAtomicFileJSON(lockfilePath, lockfileData, {pretty: true})
 
-	_debugPrint(`i have created an empty enkore-lock.json file`)
+	log(`i have created an empty enkore-lock.json file`)
 
 	return lockfileData
 }

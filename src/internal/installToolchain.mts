@@ -10,10 +10,10 @@ import {getCoreDataFilePath} from "./paths/getCoreDataFilePath.mts"
 import {formatToolchainSpecifier} from "./formatToolchainSpecifier.mts"
 import {getCurrentCoreBaseDirPath} from "./paths/getCurrentCoreBaseDirPath.mts"
 import {randomIdentifierSync} from "@aniojs/random-ident"
-import {_debugPrint} from "./_debugPrint.mts"
 import {spawnAsync} from "./spawnAsync.mts"
 import {getCurrentPlatformString} from "./getCurrentPlatformString.mts"
 import {_updateLockFileToolchain} from "./_updateLockFileToolchain.mts"
+import {log} from "@enkore/debug"
 
 export async function installToolchain(
 	projectRoot: string,
@@ -21,7 +21,7 @@ export async function installToolchain(
 	toolchain: ValidToolchainCombinations,
 	npmBinaryPath: string
 ) {
-	_debugPrint(
+	log(
 		`installing toolchain '${formatToolchainSpecifier(toolchain)}'`
 	)
 

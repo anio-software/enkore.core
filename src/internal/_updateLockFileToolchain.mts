@@ -4,13 +4,13 @@ import {
 } from "@enkore/spec"
 import {readLockFile} from "./readLockFile.mts"
 import {_writeLockFile} from "./_writeLockFile.mts"
-import {_debugPrint} from "./_debugPrint.mts"
+import {log} from "@enkore/debug"
 
 export async function _updateLockFileToolchain(
 	projectRoot: string,
 	toolchain: ValidToolchainCombinations
 ) {
-	_debugPrint("_updateLockFileToolchain called")
+	log("_updateLockFileToolchain called")
 
 	//
 	// we presume the enkore-lock.json file exists here
