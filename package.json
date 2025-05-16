@@ -19,7 +19,7 @@
     "@aniojs/node-fs": "^0.3.1",
     "@aniojs/node-fs-file": "^0.2.0",
     "@aniojs/random-ident": "^0.1.2",
-    "@asint/enkore__common": "^0.0.118",
+    "@asint/enkore__common": "^0.0.119",
     "@asint/enkore__spec": "^0.269.0",
     "@enkore/debug": "^0.0.4",
     "@fourtune/core": "^0.1101.0",
