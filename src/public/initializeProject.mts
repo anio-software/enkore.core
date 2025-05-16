@@ -21,6 +21,7 @@ import {installToolchain} from "#~src/internal/installToolchain.mts"
 function makeReturnObject(
 	projectRoot: string,
 	initialLockFile: EnkoreLockFile|null,
+	namespace: "asint" | "enkore",
 	targetIntegrationAPI: EnkoreTargetIntegrationAPI
 ): Awaited<ReturnType<API["initializeProject"]>> {
 	if (initialLockFile === null) {
@@ -28,6 +29,7 @@ function makeReturnObject(
 	}
 
 	return {
+		_targetIntegrationPackageNamespace: namespace,
 		initialLockFile,
 		targetIntegrationAPI,
 
@@ -50,7 +52,8 @@ const impl: API["initializeProject"] = async function(
 	const projectConfig = await readEnkoreConfigFile(projectRoot)
 
 	const {
-		targetIntegrationAPI
+		targetIntegrationAPI,
+		namespace
 	} = await loadTargetIntegration(projectRoot, projectConfig)
 
 	const toolchainToInstall: ValidToolchainCombinations = await (async () => {
@@ -91,6 +94,7 @@ const impl: API["initializeProject"] = async function(
 		return makeReturnObject(
 			projectRoot,
 			initialLockFile,
+			namespace,
 			targetIntegrationAPI
 		)
 	}
@@ -144,6 +148,7 @@ const impl: API["initializeProject"] = async function(
 	return makeReturnObject(
 		projectRoot,
 		initialLockFile,
+		namespace,
 		targetIntegrationAPI
 	)
 
