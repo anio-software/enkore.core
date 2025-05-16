@@ -37,7 +37,10 @@ function getTargetIntegrationImportPath(
 export async function loadTargetIntegration(
 	projectRoot: string,
 	projectConfig: EnkoreConfig
-) : Promise<EnkoreTargetIntegrationAPI> {
+) : Promise<{
+	targetIntegrationAPI: EnkoreTargetIntegrationAPI
+	namespace: "asint" | "enkore"
+}> {
 	const {
 		importPath,
 		namespace
@@ -50,7 +53,10 @@ export async function loadTargetIntegration(
 		)
 	}
 
-	return await importAPI(
-		importPath, "EnkoreTargetIntegrationAPI"
-	)
+	return {
+		targetIntegrationAPI: await importAPI(
+			importPath, "EnkoreTargetIntegrationAPI"
+		),
+		namespace
+	}
 }

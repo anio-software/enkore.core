@@ -49,7 +49,9 @@ const impl: API["initializeProject"] = async function(
 	const projectRoot = await getProjectRootFromArgumentAndValidate(root)
 	const projectConfig = await readEnkoreConfigFile(projectRoot)
 
-	const targetIntegrationAPI = await loadTargetIntegration(projectRoot, projectConfig)
+	const {
+		targetIntegrationAPI
+	} = await loadTargetIntegration(projectRoot, projectConfig)
 
 	const toolchainToInstall: ValidToolchainCombinations = await (async () => {
 		if (options?.forceToolchain) {
