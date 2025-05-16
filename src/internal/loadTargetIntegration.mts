@@ -9,27 +9,39 @@ import {resolveImportSpecifierFromProjectRoot} from "@asint/enkore__common"
 function getTargetIntegrationImportPath(
 	projectRoot: string,
 	projectConfig: EnkoreConfig
-): string|false {
+): {
+	importPath: string|false
+	namespace: "asint" | "enkore"
+} {
 	const asintImportPath = resolveImportSpecifierFromProjectRoot(
 		projectRoot,
 		`@asint/enkore-target__${projectConfig.target.name}/targetIntegrationAPI`
 	)
 
 	if (asintImportPath !== false) {
-		return asintImportPath
+		return {
+			importPath: asintImportPath,
+			namespace: "asint"
+		}
 	}
 
-	return resolveImportSpecifierFromProjectRoot(
-		projectRoot,
-		`@enkore-target/${projectConfig.target.name}/targetIntegrationAPI`
-	)
+	return {
+		importPath: resolveImportSpecifierFromProjectRoot(
+			projectRoot,
+			`@enkore-target/${projectConfig.target.name}/targetIntegrationAPI`
+		),
+		namespace: "enkore"
+	}
 }
 
 export async function loadTargetIntegration(
 	projectRoot: string,
 	projectConfig: EnkoreConfig
 ) : Promise<EnkoreTargetIntegrationAPI> {
-	const importPath = getTargetIntegrationImportPath(projectRoot, projectConfig)
+	const {
+		importPath,
+		namespace
+	} = getTargetIntegrationImportPath(projectRoot, projectConfig)
 
 	if (importPath === false) {
 		throw new Error(
