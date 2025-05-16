@@ -3,11 +3,11 @@ import type {
 	EnkoreLockFile,
 	ValidToolchainCombinations,
 	EnkoreTargetIntegrationAPI
-} from "@enkore/spec"
+} from "@asint/enkore__spec"
 import {
 	getProjectRootFromArgumentAndValidate,
 	readEnkoreConfigFile
-} from "@enkore/common"
+} from "@asint/enkore__common"
 import {log} from "@enkore/debug"
 import {loadTargetIntegration} from "#~src/internal/loadTargetIntegration.mts"
 import {formatToolchainSpecifier} from "#~src/internal/formatToolchainSpecifier.mts"

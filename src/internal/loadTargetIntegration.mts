@@ -2,9 +2,9 @@ import {
 	type EnkoreTargetIntegrationAPI,
 	type EnkoreConfig,
 	importAPI
-} from "@enkore/spec"
+} from "@asint/enkore__spec"
 
-import {resolveImportSpecifierFromProjectRoot} from "@enkore/common"
+import {resolveImportSpecifierFromProjectRoot} from "@asint/enkore__common"
 
 export async function loadTargetIntegration(
 	projectRoot: string,
