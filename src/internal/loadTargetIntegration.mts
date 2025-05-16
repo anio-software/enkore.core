@@ -6,14 +6,30 @@ import {
 
 import {resolveImportSpecifierFromProjectRoot} from "@asint/enkore__common"
 
+function getTargetIntegrationImportPath(
+	projectRoot: string,
+	projectConfig: EnkoreConfig
+): string|false {
+	const asintImportPath = resolveImportSpecifierFromProjectRoot(
+		projectRoot,
+		`@asint/enkore-target__${projectConfig.target.name}/targetIntegrationAPI`
+	)
+
+	if (asintImportPath !== false) {
+		return asintImportPath
+	}
+
+	return resolveImportSpecifierFromProjectRoot(
+		projectRoot,
+		`@enkore-target/${projectConfig.target.name}/targetIntegrationAPI`
+	)
+}
+
 export async function loadTargetIntegration(
 	projectRoot: string,
 	projectConfig: EnkoreConfig
 ) : Promise<EnkoreTargetIntegrationAPI> {
-	const importPath = resolveImportSpecifierFromProjectRoot(
-		projectRoot,
-		`@enkore-target/${projectConfig.target.name}/targetIntegrationAPI`
-	)
+	const importPath = getTargetIntegrationImportPath(projectRoot, projectConfig)
 
 	if (importPath === false) {
 		throw new Error(
