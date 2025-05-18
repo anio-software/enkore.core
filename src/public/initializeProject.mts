@@ -63,7 +63,9 @@ const impl: API["initializeProject"] = async function(
 			return projectConfig.target._toolchain
 		}
 
-		return await targetIntegrationAPI.getToolchainToInstall()
+		return await targetIntegrationAPI.getToolchainToInstall(
+			projectRoot, projectConfig
+		)
 	})()
 
 	log(`force parameter is ` + (force ? `set` : `not set`))
