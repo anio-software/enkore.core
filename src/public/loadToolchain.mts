@@ -1,7 +1,7 @@
 import type {API} from "#~src/API.d.mts"
 import {
 	getProjectRootFromArgumentAndValidate
-} from "@asint/enkore__common"
+} from "@anio-software/enkore.common"
 import {initialize} from "#~src/internal/initialize.mts"
 import {getCurrentPlatformString} from "#~src/internal/getCurrentPlatformString.mts"
 import path from "node:path"

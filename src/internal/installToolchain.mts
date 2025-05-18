@@ -2,7 +2,7 @@ import {
 	type EnkoreConfig,
 	type EnkoreCoreData,
 	type ValidToolchainCombinations
-} from "@asint/enkore__spec"
+} from "@anio-software/enkore.spec"
 import path from "node:path"
 import fs from "node:fs/promises"
 import {writeAtomicFileJSON, mkdirp, remove} from "@aniojs/node-fs"

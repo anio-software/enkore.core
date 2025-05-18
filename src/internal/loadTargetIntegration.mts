@@ -2,9 +2,9 @@ import {
 	type EnkoreTargetIntegrationAPI,
 	type EnkoreConfig,
 	importAPI
-} from "@asint/enkore__spec"
+} from "@anio-software/enkore.spec"
 
-import {resolveImportSpecifierFromProjectRoot} from "@asint/enkore__common"
+import {resolveImportSpecifierFromProjectRoot} from "@anio-software/enkore.common"
 
 function getTargetIntegrationImportPath(
 	projectRoot: string,

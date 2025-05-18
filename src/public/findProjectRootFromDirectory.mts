@@ -2,7 +2,7 @@ import type {API} from "#~src/API.d.mts"
 import {log} from "@enkore/debug"
 import {
 	findProjectRootFromDirectory as findProjectRoot
-} from "@asint/enkore__common"
+} from "@anio-software/enkore.common"
 
 const impl: API["findProjectRootFromDirectory"] = async function(
 	startDirectory
