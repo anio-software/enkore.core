@@ -13,6 +13,18 @@ function getTargetIntegrationImportPath(
 	importPath: string|false
 	namespace: "asint" | "enkore"
 } {
+	const anioSoftwareImportPath = resolveImportSpecifierFromProjectRoot(
+		projectRoot,
+		`@anio-software/enkore.target-${projectConfig.target.name}/targetIntegrationAPI`
+	)
+
+	if (anioSoftwareImportPath !== false) {
+		return {
+			importPath: anioSoftwareImportPath,
+			namespace: "asint"
+		}
+	}
+
 	const asintImportPath = resolveImportSpecifierFromProjectRoot(
 		projectRoot,
 		`@asint/enkore-target__${projectConfig.target.name}/targetIntegrationAPI`
