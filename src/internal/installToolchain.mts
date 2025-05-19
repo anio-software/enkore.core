@@ -47,6 +47,8 @@ export async function installToolchain(
 		npmConfig += `@anio-software:registry="https://${anioSoftwareRegistry}/"\n`
 		npmConfig += `//${anioSoftwareRegistry}/:keyfile=${JSON.stringify(clientKeyFilePath)}\n`
 		npmConfig += `//${anioSoftwareRegistry}/:certfile=${JSON.stringify(clientCertFilePath)}\n`
+	} else {
+		npmConfig = `registry="https://registry.npmjs.org/"\n`
 	}
 
 	await writeAtomicFileJSON(
