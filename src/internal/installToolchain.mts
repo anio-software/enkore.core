@@ -39,7 +39,7 @@ export async function installToolchain(
 			version: "0.0.0",
 			private: true,
 			dependencies: {
-				[toolchain[0]]: `0.0.${toolchain[1]}`
+				[`@anio-software/enkore.target-${toolchain[0]}-toolchain`]: `0.0.${toolchain[1]}`
 			}
 		},
 		{pretty: true}
