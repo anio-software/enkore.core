@@ -1,5 +1,4 @@
 import {
-	type EnkoreConfig,
 	type EnkoreCoreData,
 	type ToolchainSpecifiers
 } from "@anio-software/enkore.spec"
