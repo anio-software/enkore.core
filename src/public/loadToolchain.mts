@@ -36,7 +36,8 @@ const impl: API["loadToolchain"] = async function(
 			getCurrentCoreBaseDirPath(projectRoot),
 			"toolchain",
 			"node_modules",
-			coreData.currentToolchain.installedID,
+			"@anio-software",
+			`enkore.target-${coreData.currentToolchain.installedID}-toolchain`,
 			"dist",
 			"default",
 			"index.mjs"
