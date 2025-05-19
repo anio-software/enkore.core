@@ -1,7 +1,7 @@
 import {
 	type EnkoreConfig,
 	type EnkoreCoreData,
-	type ValidToolchainCombinations
+	type ToolchainSpecifiers
 } from "@anio-software/enkore.spec"
 import path from "node:path"
 import fs from "node:fs/promises"
@@ -18,7 +18,7 @@ import {log} from "@enkore/debug"
 export async function installToolchain(
 	projectRoot: string,
 	coreData: EnkoreCoreData,
-	toolchain: ValidToolchainCombinations,
+	toolchain: ToolchainSpecifiers,
 	npmBinaryPath: string
 ) {
 	log(

@@ -1,7 +1,7 @@
 import type {API} from "#~src/API.d.mts"
 import type {
 	EnkoreLockFile,
-	ValidToolchainCombinations,
+	ToolchainSpecifiers,
 	EnkoreTargetIntegrationAPI
 } from "@anio-software/enkore.spec"
 import {
@@ -56,7 +56,7 @@ const impl: API["initializeProject"] = async function(
 		namespace
 	} = await loadTargetIntegration(projectRoot, projectConfig)
 
-	const toolchainToInstall: ValidToolchainCombinations = await (async () => {
+	const toolchainToInstall: ToolchainSpecifiers = await (async () => {
 		if (options?.forceToolchain) {
 			return options?.forceToolchain
 		} else if (projectConfig.target._toolchain) {

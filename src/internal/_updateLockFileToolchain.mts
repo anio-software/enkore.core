@@ -1,6 +1,6 @@
 import {
 	type EnkoreConfig,
-	type ValidToolchainCombinations
+	type ToolchainSpecifiers
 } from "@anio-software/enkore.spec"
 import {readLockFile} from "./readLockFile.mts"
 import {_writeLockFile} from "./_writeLockFile.mts"
@@ -8,7 +8,7 @@ import {log} from "@enkore/debug"
 
 export async function _updateLockFileToolchain(
 	projectRoot: string,
-	toolchain: ValidToolchainCombinations
+	toolchain: ToolchainSpecifiers
 ) {
 	log("_updateLockFileToolchain called")
 

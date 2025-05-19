@@ -1,6 +1,6 @@
 import {
 	type EnkoreLockFile,
-	type ValidToolchainCombinations,
+	type ToolchainSpecifiers,
 	readEntityJSONFile,
 	createEntity
 } from "@anio-software/enkore.spec"
@@ -10,7 +10,7 @@ import {log} from "@enkore/debug"
 
 export async function _readLockFileOrCreateIt(
 	projectRoot: string,
-	toolchain: ValidToolchainCombinations
+	toolchain: ToolchainSpecifiers
 ): Promise<EnkoreLockFile> {
 	log("_readLockFileOrCreateIt called")
 
