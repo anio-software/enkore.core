@@ -37,7 +37,7 @@ const impl: API["loadToolchain"] = async function(
 			"toolchain",
 			"node_modules",
 			"@anio-software",
-			`enkore.target-${coreData.currentToolchain.installedID}-toolchain`,
+			`enkore-private.target-${coreData.currentToolchain.installedID}-toolchain`,
 			"dist",
 			"default",
 			"index.mjs"
