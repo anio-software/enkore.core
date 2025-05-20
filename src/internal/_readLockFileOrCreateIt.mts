@@ -3,7 +3,7 @@ import {
 	type ToolchainSpecifiers,
 	readEntityJSONFile,
 	createEntity
-} from "@anio-software/enkore.spec"
+} from "@anio-software/enkore-private.spec"
 import {getEnkoreLockFilePath} from "./paths/getEnkoreLockFilePath.mts"
 import {isFileSync, writeAtomicFileJSON} from "@aniojs/node-fs"
 import {log} from "@enkore/debug"

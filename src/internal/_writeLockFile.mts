@@ -2,7 +2,7 @@ import {
 	type EnkoreLockFile_V0_Rev0,
 	type RawType,
 	createEntity
-} from "@anio-software/enkore.spec"
+} from "@anio-software/enkore-private.spec"
 
 import {getEnkoreLockFilePath} from "./paths/getEnkoreLockFilePath.mts"
 import {writeAtomicFileJSON} from "@aniojs/node-fs"

@@ -3,11 +3,11 @@ import type {
 	EnkoreLockFile,
 	ToolchainSpecifiers,
 	EnkoreTargetIntegrationAPI
-} from "@anio-software/enkore.spec"
+} from "@anio-software/enkore-private.spec"
 import {
 	getProjectRootFromArgumentAndValidate,
 	readEnkoreConfigFile
-} from "@anio-software/enkore.common"
+} from "@anio-software/enkore-private.common"
 import {log} from "@enkore/debug"
 import {loadTargetIntegration} from "#~src/internal/loadTargetIntegration.mts"
 import {formatToolchainSpecifier} from "#~src/internal/formatToolchainSpecifier.mts"

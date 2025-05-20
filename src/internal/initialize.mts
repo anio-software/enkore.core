@@ -2,7 +2,7 @@ import {
 	type EnkoreCoreData,
 	readEntityJSONFile,
 	createEntity
-} from "@anio-software/enkore.spec"
+} from "@anio-software/enkore-private.spec"
 import {mkdirp, writeAtomicFileJSON} from "@aniojs/node-fs"
 import {getCurrentCoreBaseDirPath} from "./paths/getCurrentCoreBaseDirPath.mts"
 import {cleanCoreBaseDirectory} from "./cleanCoreBaseDirectory.mts"

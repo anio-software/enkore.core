@@ -1,7 +1,7 @@
 import {
 	type EnkoreConfig,
 	type ToolchainSpecifiers
-} from "@anio-software/enkore.spec"
+} from "@anio-software/enkore-private.spec"
 import {readLockFile} from "./readLockFile.mts"
 import {_writeLockFile} from "./_writeLockFile.mts"
 import {log} from "@enkore/debug"

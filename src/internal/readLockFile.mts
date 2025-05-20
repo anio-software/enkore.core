@@ -1,7 +1,7 @@
 import {
 	type EnkoreLockFile,
 	readEntityJSONFile
-} from "@anio-software/enkore.spec"
+} from "@anio-software/enkore-private.spec"
 import {getEnkoreLockFilePath} from "#~src/internal/paths/getEnkoreLockFilePath.mts"
 import {log} from "@enkore/debug"
 

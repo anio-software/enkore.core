@@ -1,7 +1,7 @@
 import {
 	type EnkoreCoreData,
 	type ToolchainSpecifiers
-} from "@anio-software/enkore.spec"
+} from "@anio-software/enkore-private.spec"
 import path from "node:path"
 import fs from "node:fs/promises"
 import {writeAtomicFileJSON, writeAtomicFile, tmpfile, mkdirp, remove} from "@aniojs/node-fs"
