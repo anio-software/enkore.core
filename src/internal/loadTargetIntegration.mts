@@ -4,7 +4,7 @@ import {
 	importAPI
 } from "@anio-software/enkore-private.spec"
 
-import {resolveImportSpecifierFromProjectRoot} from "@anio-software/enkore-private.common"
+import {resolveImportSpecifierFromProjectRoot} from "@anio-software/enkore-private.spec/utils"
 
 function getTargetIntegrationImportPath(
 	projectRoot: string,
