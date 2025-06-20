@@ -13,7 +13,7 @@ import {spawnAsync} from "./spawnAsync.mts"
 import {getCurrentPlatformString} from "./getCurrentPlatformString.mts"
 import {_extractAnioSoftwareRegistryConfig} from "./_extractAnioSoftwareRegistryConfig.mts"
 import {_updateLockFileToolchain} from "./_updateLockFileToolchain.mts"
-import {log} from "@enkore/debug"
+import {log} from "@anio-software/enkore-private.debug"
 
 const anioSoftwareRegistry = "npm-registry.anio.software"
 

@@ -1,5 +1,5 @@
 import type {API} from "#~src/API.d.mts"
-import {log} from "@enkore/debug"
+import {log} from "@anio-software/enkore-private.debug"
 import {
 	findProjectRootFromDirectory as findProjectRoot
 } from "@anio-software/enkore-private.spec/utils"

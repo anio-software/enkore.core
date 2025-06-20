@@ -4,7 +4,7 @@ import {
 } from "@anio-software/enkore-private.spec"
 import {readLockFile} from "./readLockFile.mts"
 import {_writeLockFile} from "./_writeLockFile.mts"
-import {log} from "@enkore/debug"
+import {log} from "@anio-software/enkore-private.debug"
 
 export async function _updateLockFileToolchain(
 	projectRoot: string,

@@ -2,7 +2,7 @@ import {getCurrentCoreBaseDirPath} from "./paths/getCurrentCoreBaseDirPath.mts"
 import fs from "node:fs/promises"
 import {remove} from "@aniojs/node-fs"
 import path from "node:path"
-import {log} from "@enkore/debug"
+import {log} from "@anio-software/enkore-private.debug"
 
 export async function cleanCoreBaseDirectory(
 	projectRoot: string

@@ -6,7 +6,7 @@ import {
 
 import {getEnkoreLockFilePath} from "./paths/getEnkoreLockFilePath.mts"
 import {writeAtomicFileJSON} from "@aniojs/node-fs"
-import {log} from "@enkore/debug"
+import {log} from "@anio-software/enkore-private.debug"
 
 export async function _writeLockFile(
 	projectRoot: string,
