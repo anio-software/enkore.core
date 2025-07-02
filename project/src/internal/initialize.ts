@@ -3,7 +3,7 @@ import {
 	readEntityJSONFile,
 	createEntity
 } from "@anio-software/enkore-private.spec"
-import {mkdirp, writeAtomicFileJSON} from "@aniojs/node-fs"
+import {mkdirp, writeAtomicFileJSON} from "@anio-software/pkg.node-fs"
 import {getCurrentCoreBaseDirPath} from "./paths/getCurrentCoreBaseDirPath.ts"
 import {cleanCoreBaseDirectory} from "./cleanCoreBaseDirectory.ts"
 import {getCoreDataFilePath} from "./paths/getCoreDataFilePath.ts"

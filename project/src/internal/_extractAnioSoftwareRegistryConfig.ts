@@ -1,4 +1,4 @@
-import {readFileStringSync} from "@aniojs/node-fs"
+import {readFileStringSync} from "@anio-software/pkg.node-fs"
 import path from "node:path"
 
 export function _extractAnioSoftwareRegistryConfig(

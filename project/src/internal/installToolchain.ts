@@ -4,7 +4,7 @@ import {
 } from "@anio-software/enkore-private.spec"
 import path from "node:path"
 import fs from "node:fs/promises"
-import {writeAtomicFileJSON, writeAtomicFile, tmpfile, mkdirp, remove} from "@aniojs/node-fs"
+import {writeAtomicFileJSON, writeAtomicFile, tmpfile, mkdirp, remove} from "@anio-software/pkg.node-fs"
 import {getCoreDataFilePath} from "./paths/getCoreDataFilePath.ts"
 import {formatToolchainSpecifier} from "./formatToolchainSpecifier.ts"
 import {getCurrentCoreBaseDirPath} from "./paths/getCurrentCoreBaseDirPath.ts"

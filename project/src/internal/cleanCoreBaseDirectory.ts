@@ -1,6 +1,6 @@
 import {getCurrentCoreBaseDirPath} from "./paths/getCurrentCoreBaseDirPath.ts"
 import fs from "node:fs/promises"
-import {remove} from "@aniojs/node-fs"
+import {remove} from "@anio-software/pkg.node-fs"
 import path from "node:path"
 import {log} from "@anio-software/enkore-private.debug"
 
