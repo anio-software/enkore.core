@@ -2,7 +2,7 @@ import {
 	type EnkoreLockFile,
 	readEntityJSONFile
 } from "@anio-software/enkore-private.spec"
-import {getEnkoreLockFilePath} from "#~src/internal/paths/getEnkoreLockFilePath.mts"
+import {getEnkoreLockFilePath} from "#~src/internal/paths/getEnkoreLockFilePath.ts"
 import {log} from "@anio-software/enkore-private.debug"
 
 export async function readLockFile(

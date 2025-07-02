@@ -1,6 +1,6 @@
 import path from "node:path"
-import type {API} from "#~src/API.d.mts"
-import {getCurrentCoreBaseDirPath} from "#~src/internal/paths/getCurrentCoreBaseDirPath.mts"
+import type {API} from "#~src/API.ts"
+import {getCurrentCoreBaseDirPath} from "#~src/internal/paths/getCurrentCoreBaseDirPath.ts"
 import {randomIdentifierSync} from "@aniojs/random-ident"
 import {mkdirp} from "@aniojs/node-fs"
 

@@ -1,4 +1,4 @@
-import {getCurrentCoreBaseDirPath} from "./paths/getCurrentCoreBaseDirPath.mts"
+import {getCurrentCoreBaseDirPath} from "./paths/getCurrentCoreBaseDirPath.ts"
 import fs from "node:fs/promises"
 import {remove} from "@aniojs/node-fs"
 import path from "node:path"

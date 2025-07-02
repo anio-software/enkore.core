@@ -1,11 +1,11 @@
-import type {API} from "#~src/API.d.mts"
+import type {API} from "#~src/API.ts"
 import {
 	getProjectRootFromArgumentAndValidate
 } from "@anio-software/enkore-private.spec/utils"
-import {initialize} from "#~src/internal/initialize.mts"
-import {getCurrentPlatformString} from "#~src/internal/getCurrentPlatformString.mts"
+import {initialize} from "#~src/internal/initialize.ts"
+import {getCurrentPlatformString} from "#~src/internal/getCurrentPlatformString.ts"
 import path from "node:path"
-import {getCurrentCoreBaseDirPath} from "#~src/internal/paths/getCurrentCoreBaseDirPath.mts"
+import {getCurrentCoreBaseDirPath} from "#~src/internal/paths/getCurrentCoreBaseDirPath.ts"
 
 const impl: API["loadToolchain"] = async function(
 	root
