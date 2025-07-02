@@ -1,4 +1,5 @@
 {
+  "private": true,
   "type": "module",
   "name": "@enkore/core",
   "version": "0.11.2",
