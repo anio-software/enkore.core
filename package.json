@@ -20,10 +20,7 @@
     "@anio-software/enkore-private.spec": "^0.304.1",
     "@aniojs/node-fs": "^0.5.3",
     "@aniojs/node-fs-file": "^0.2.0",
-    "@aniojs/random-ident": "^0.1.2",
-    "@fourtune/core": "^0.1101.0",
-    "@fourtune/realm-js": "^1.0.5",
-    "fourtune": "^0.30000.1"
+    "@aniojs/random-ident": "^0.1.2"
   },
   "scripts": {
     "prepare": "./node_modules/.bin/fourtune ."
