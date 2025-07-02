@@ -8,7 +8,7 @@ import {writeAtomicFileJSON, writeAtomicFile, tmpfile, mkdirp, remove} from "@an
 import {getCoreDataFilePath} from "./paths/getCoreDataFilePath.ts"
 import {formatToolchainSpecifier} from "./formatToolchainSpecifier.ts"
 import {getCurrentCoreBaseDirPath} from "./paths/getCurrentCoreBaseDirPath.ts"
-import {randomIdentifierSync} from "@aniojs/random-ident"
+import {randomIdentifierSync} from "@anio-software/pkg.random-identifier"
 import {spawnAsync} from "./spawnAsync.ts"
 import {getCurrentPlatformString} from "./getCurrentPlatformString.ts"
 import {_extractAnioSoftwareRegistryConfig} from "./_extractAnioSoftwareRegistryConfig.ts"
