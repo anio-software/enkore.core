@@ -1,5 +1,5 @@
 import path from "node:path"
-import {getCoreBaseDirPath} from "./getCoreBaseDirPath.mts"
+import {getCoreBaseDirPath} from "./getCoreBaseDirPath.ts"
 
 export function getCurrentCoreBaseDirPath(projectRoot: string) {
 	return path.join(

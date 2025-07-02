@@ -3,10 +3,10 @@ import {
 	readEntityJSONFile,
 	createEntity
 } from "@anio-software/enkore-private.spec"
-import {mkdirp, writeAtomicFileJSON} from "@aniojs/node-fs"
-import {getCurrentCoreBaseDirPath} from "./paths/getCurrentCoreBaseDirPath.mts"
-import {cleanCoreBaseDirectory} from "./cleanCoreBaseDirectory.mts"
-import {getCoreDataFilePath} from "./paths/getCoreDataFilePath.mts"
+import {mkdirp, writeAtomicFileJSON} from "@anio-software/pkg.node-fs"
+import {getCurrentCoreBaseDirPath} from "./paths/getCurrentCoreBaseDirPath.ts"
+import {cleanCoreBaseDirectory} from "./cleanCoreBaseDirectory.ts"
+import {getCoreDataFilePath} from "./paths/getCoreDataFilePath.ts"
 
 export async function initialize(
 	projectRoot: string

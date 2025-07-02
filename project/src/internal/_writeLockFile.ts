@@ -4,8 +4,8 @@ import {
 	createEntity
 } from "@anio-software/enkore-private.spec"
 
-import {getEnkoreLockFilePath} from "./paths/getEnkoreLockFilePath.mts"
-import {writeAtomicFileJSON} from "@aniojs/node-fs"
+import {getEnkoreLockFilePath} from "./paths/getEnkoreLockFilePath.ts"
+import {writeAtomicFileJSON} from "@anio-software/pkg.node-fs"
 import {log} from "@anio-software/enkore-private.debug"
 
 export async function _writeLockFile(
