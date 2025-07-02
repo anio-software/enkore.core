@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "name": "@enkore/core",
-  "version": "0.11.2",
+  "version": "0.11.10",
   "description": "Next generation of @fourtune/core.",
   "author": "Anio Software <info@anio.software>",
   "repository": {
