@@ -193,6 +193,28 @@ const impl: API["initializeProject"] = async function(
 
 		const {currentToolchain} = coreData
 
+		// under certain circumstances the lock file data and core data can get out of sync
+		// NB: we never get here in CI mode
+		if (initialLockFile !== null) {
+			print(`checking if core data and lock file data are out of sync`)
+
+			if (currentToolchain.installedID !== initialLockFile.toolchain[0]) {
+				const a = currentToolchain.installedID
+				const b = initialLockFile.toolchain[0]
+
+				print(`core data and lock file data is out of sync (${a} != ${b})`)
+
+				return false
+			} else if (currentToolchain.installedRev !== initialLockFile.toolchain[1]) {
+				const a = currentToolchain.installedRev
+				const b = initialLockFile.toolchain[1]
+
+				print(`core data and lock file data is out of sync (${a} != ${b})`)
+
+				return false
+			}
+		}
+
 		if (currentToolchain.installedOnPlatform !== getCurrentPlatformString()) {
 			print(`platform does not match`)
 			return false
