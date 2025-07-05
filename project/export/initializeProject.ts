@@ -1,11 +1,11 @@
 import type {API} from "#~src/API.ts"
 import type {
 	EnkoreLockFile,
-	ToolchainSpecifiers,
 	EnkoreTargetIntegrationAPI
 } from "@anio-software/enkore-private.spec"
 import type {
-	NodePackageJSON
+	NodePackageJSON,
+	ToolchainSpecifier
 } from "@anio-software/enkore-private.spec/primitives"
 import {
 	getProjectRootFromArgumentAndValidate,
@@ -64,7 +64,7 @@ const impl: API["initializeProject"] = async function(
 		namespace
 	} = await loadTargetIntegration(projectRoot, projectConfig)
 
-	const toolchainToInstall: ToolchainSpecifiers = await (async () => {
+	const toolchainToInstall: ToolchainSpecifier = await (async () => {
 		if (options?.forceToolchain) {
 			return options?.forceToolchain
 		} else if (projectConfig.target._toolchain) {

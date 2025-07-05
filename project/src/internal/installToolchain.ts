@@ -1,7 +1,5 @@
-import {
-	type EnkoreCoreData,
-	type ToolchainSpecifiers
-} from "@anio-software/enkore-private.spec"
+import type {EnkoreCoreData} from "@anio-software/enkore-private.spec"
+import type {ToolchainSpecifier} from "@anio-software/enkore-private.spec/primitives"
 import path from "node:path"
 import fs from "node:fs/promises"
 import {writeAtomicFileJSON, writeAtomicFile, tmpfile, mkdirp, remove} from "@anio-software/pkg.node-fs"
@@ -20,7 +18,7 @@ const anioSoftwareRegistry = "npm-registry.anio.software"
 export async function installToolchain(
 	projectRoot: string,
 	coreData: EnkoreCoreData,
-	toolchain: ToolchainSpecifiers,
+	toolchain: ToolchainSpecifier,
 	npmBinaryPath: string
 ) {
 	log(

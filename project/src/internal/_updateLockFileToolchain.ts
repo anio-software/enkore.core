@@ -1,14 +1,11 @@
-import {
-	type EnkoreConfig,
-	type ToolchainSpecifiers
-} from "@anio-software/enkore-private.spec"
+import type {ToolchainSpecifier} from "@anio-software/enkore-private.spec/primitives"
 import {readLockFile} from "./readLockFile.ts"
 import {_writeLockFile} from "./_writeLockFile.ts"
 import {log} from "@anio-software/enkore-private.debug"
 
 export async function _updateLockFileToolchain(
 	projectRoot: string,
-	toolchain: ToolchainSpecifiers
+	toolchain: ToolchainSpecifier
 ) {
 	log("_updateLockFileToolchain called")
 

@@ -1,16 +1,16 @@
 import {
 	type EnkoreLockFile,
-	type ToolchainSpecifiers,
 	readEntityJSONFile,
 	createEntity
 } from "@anio-software/enkore-private.spec"
+import type {ToolchainSpecifier} from "@anio-software/enkore-private.spec/primitives"
 import {getEnkoreLockFilePath} from "./paths/getEnkoreLockFilePath.ts"
 import {isFileSync, writeAtomicFileJSON} from "@anio-software/pkg.node-fs"
 import {log} from "@anio-software/enkore-private.debug"
 
 export async function _readLockFileOrCreateIt(
 	projectRoot: string,
-	toolchain: ToolchainSpecifiers
+	toolchain: ToolchainSpecifier
 ): Promise<EnkoreLockFile> {
 	log("_readLockFileOrCreateIt called")
 
