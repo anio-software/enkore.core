@@ -66,6 +66,8 @@ const impl: API["initializeProject"] = async function(
 
 	const toolchainToInstall: ToolchainSpecifier = await (async () => {
 		if (options?.forceToolchain) {
+			log(`forceToolchain is set to '${formatToolchainSpecifier(options.forceToolchain)}'`)
+
 			return options?.forceToolchain
 		}
 
