@@ -67,8 +67,6 @@ const impl: API["initializeProject"] = async function(
 	const toolchainToInstall: ToolchainSpecifier = await (async () => {
 		if (options?.forceToolchain) {
 			return options?.forceToolchain
-		} else if (projectConfig.target._toolchain) {
-			return projectConfig.target._toolchain
 		}
 
 		return await targetIntegrationAPI.getToolchainToInstall(
