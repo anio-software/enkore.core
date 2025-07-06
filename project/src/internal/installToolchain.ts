@@ -91,7 +91,7 @@ export async function installToolchain(
 		getCurrentCoreBaseDirPath(projectRoot), "toolchain"
 	)
 
-	await remove(destinationDir)
+	await remove(destinationDir, {force: true})
 	await fs.rename(tmpDir, destinationDir)
 
 	// ---- //
