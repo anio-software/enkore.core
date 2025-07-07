@@ -11,11 +11,11 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@anio-software/enkore": "^0.0.130",
+    "@anio-software/enkore": "^0.0.180",
     "@anio-software/enkore-private.debug": "^0.0.7",
     "@anio-software/enkore-private.spec": "^0.365.1",
     "@anio-software/enkore.core": "^0.11.2",
-    "@anio-software/enkore.target-js-node": "^0.0.266-canary-91a6ea85-a631800c",
+    "@anio-software/enkore.target-js-node": "^0.0.330-canary-4afd3634-793f976e",
     "@anio-software/pkg.node-fs": "^0.0.2",
     "@anio-software/pkg.random-identifier": "^0.0.2"
   }
