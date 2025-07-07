@@ -1,34 +1,22 @@
 {
+  "private": true,
+  "type": "module",
   "name": "@enkore/core",
-  "version": "0.11.2",
-  "author": "Anio Software <info@anio.software>",
+  "version": "0.12.0",
   "description": "Next generation of @fourtune/core.",
-  "license": "MIT",
-  "exports": {
-    ".": {
-      "types": "./dist/default/index.d.mts",
-      "default": "./dist/default/index.mjs"
-    }
-  },
+  "author": "Anio Software <info@anio.software>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/anio-software/enkore.core.git"
   },
-  "type": "module",
+  "license": "MIT",
   "devDependencies": {
+    "@anio-software/enkore": "^0.0.180",
     "@anio-software/enkore-private.debug": "^0.0.7",
-    "@anio-software/enkore-private.spec": "^0.304.1",
-    "@aniojs/node-fs": "^0.5.3",
-    "@aniojs/node-fs-file": "^0.2.0",
-    "@aniojs/random-ident": "^0.1.2",
-    "@fourtune/core": "^0.1101.0",
-    "@fourtune/realm-js": "^1.0.5",
-    "fourtune": "^0.30000.1"
-  },
-  "scripts": {
-    "prepare": "./node_modules/.bin/fourtune ."
-  },
-  "files": [
-    "./dist/"
-  ]
+    "@anio-software/enkore-private.spec": "^0.372.0",
+    "@anio-software/enkore.core": "^0.11.2",
+    "@anio-software/enkore.target-js-node": "^0.0.330-canary-4afd3634-793f976e",
+    "@anio-software/pkg.node-fs": "^0.0.2",
+    "@anio-software/pkg.random-identifier": "^0.0.3"
+  }
 }
